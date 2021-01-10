@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function agricultualHistories()
+    {
+        return $this->hasMany(AgricultualHistory::class);
+    }
+    public function fields()
+    {
+        return $this->hasMany(Field::class);
+    }
 }
