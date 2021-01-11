@@ -16,7 +16,7 @@ class CreateAdminFieldsTable extends Migration
         Schema::create('admin_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('field_number');
+            $table->string('field_number');
             $table->string('field_name');
         });
     }

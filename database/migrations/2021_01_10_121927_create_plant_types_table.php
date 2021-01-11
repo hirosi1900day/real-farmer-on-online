@@ -16,7 +16,7 @@ class CreatePlantTypesTable extends Migration
         Schema::create('plant_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('point');
+            $table->string('point');
             $table->string('name');
         });
     }

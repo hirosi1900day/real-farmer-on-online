@@ -19,14 +19,16 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('image_location');
-            $table->string('plan');
-            $table->int('point');
-            $table->string('address');
-            $table->string('self_introduce');
-            $table->int('postal_code');
+            $table->string('image_location')->default('');
+            $table->string('plan')->default('');
+            $table->unsignedBigInteger('point')->default(0);
+            $table->string('address')->default('');
+            $table->string('telphone_number')->default('');
+            $table->string('self_introduce')->default('');
+            $table->string('postal_code')->default('');
             $table->rememberToken();
             $table->timestamps();
+            
         });
     }
 

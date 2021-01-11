@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class AdminPasswordTables extends Migration
 {
     /**
-     * Run the migrations.
+     *Run the migrations.
      *
      * @return void
      */
@@ -16,6 +16,7 @@ class AdminPasswordTables extends Migration
         Schema::create('admin_passwords', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('name');
             $table->string('email');
             $table->string('password');
             $table->string('key');
