@@ -29,6 +29,26 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
                 
+                <div class="form-group">
+                    {!! Form::label('self_introduce', 'self_introduce') !!}
+                    {!! Form::textarea('self_introduce', old('self_introduce'),['class' => 'form-control']) !!}
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('address', 'address') !!}
+                    {!! Form::text('address', old('address'),['class' => 'form-control']) !!}
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('postal_code', 'postal_code') !!}
+                    {!! Form::text('postal_code', old('postal_code'),['class' => 'form-control']) !!}
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('telphone_number', 'tel') !!}
+                    {!! Form::text('telphone_number',old('telphone_number'), ['class' => 'form-control']) !!}
+                </div>
+
                 {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
         </div>

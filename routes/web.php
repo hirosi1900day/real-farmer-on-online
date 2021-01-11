@@ -21,12 +21,6 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 
-Route::group(['middleware' => ['auth']], function () {
-   Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
-   Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
-   Route::post('/admin/login/post', 'Admin\LoginController@login')->name('admin.login.post');
-   
-});
 //管理者画面
 Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('/admin/aa', 'Admin\LoginController@aa')->name('admin.aa');
@@ -37,5 +31,17 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::post('/admin/adminField/post', 'Admin\InstructionController@adminField_create')->name('admin.adminField.post');
     Route::post('/admin/plantType/post', 'Admin\InstructionController@plantType_create')->name('admin.plamtType.post');
     Route::post('/admin/instructons/post', 'Admin\InstructionController@instructons_create')->name('admin.instructons.post');
+});
+Route::group(['middleware' => ['auth']], function () {
+   Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+   Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+   Route::post('/admin/login/post', 'Admin\LoginController@login')->name('admin.login.post');
+   Route::get('/user/mypage','User\UserController@mypage')->name('user.mypage');
+   Route::get('/user/edit','User\UserController@edit')->name('user.edit');
+   Route::put('user/{id}/update','User\UserController@update')->name('user.update');
+   Route::get('/user/instruction','\User\MenuController@intruction')->name('user.instruction');
+   Route::get('/user/field','\User\MenuController@field')->name('user.field');
+   Route::get('/user/plant','\User\MenuController@plant')->name('user.plant');
+   
 });
 

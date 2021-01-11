@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Admin_password;
+use App\User;
+
 
 
 class LoginController extends Controller
@@ -24,7 +26,8 @@ class LoginController extends Controller
         ($request->key=$admin_password->key))
         {
             $request->session()->put("admin_auth", true);
-            return view('admin.admin');
+            $users=User::orderBy('created_at','desc')->get();
+            return view('admin.admin',['users'=>$users]);
         }
         return back();
     }

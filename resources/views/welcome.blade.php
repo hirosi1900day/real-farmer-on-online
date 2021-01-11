@@ -3,6 +3,7 @@
 @section('content')
     @if (Auth::check())
         {{ Auth::user()->name }}
+        <div>{!! link_to_route('user.mypage', 'マイページ') !!}</div>
     @else
         <div class="center jumbotron">
             <div class="text-center">

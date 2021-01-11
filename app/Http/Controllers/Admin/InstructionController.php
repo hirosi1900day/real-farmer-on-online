@@ -9,6 +9,7 @@ use App\Instruction;
 use App\PlantType;
 
 
+
 class InstructionController extends Controller
 {
     public function adminField(){
@@ -48,4 +49,8 @@ class InstructionController extends Controller
         $instruction->save();
         return redirect(route('admin.instructons'));
     }
+    
+       
+        
+   
 }

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('image_location')->default('');
             $table->string('plan')->default('');
-            $table->unsignedBigInteger('point')->default(0);
+            $table->string('point')->default('');
             $table->string('address')->default('');
             $table->string('telphone_number')->default('');
             $table->string('self_introduce')->default('');
