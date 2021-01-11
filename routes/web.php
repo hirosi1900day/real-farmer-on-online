@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/instruction','\User\MenuController@intruction')->name('user.instruction');
    Route::get('/user/field','\User\MenuController@field')->name('user.field');
    Route::get('/user/plant','\User\MenuController@plant')->name('user.plant');
+   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
+   Route::post('/user/pay/payment','User\PayController@payment')->name('user.pay.payment');
+   Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');
    
 });
 

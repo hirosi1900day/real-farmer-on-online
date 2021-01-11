@@ -21,6 +21,6 @@ class MenuController extends Controller
     }
     public function field(){
         $fields=Fields::orderBy('created_at','desc')->get();
-        return view('menu.field','fields'=>$fields);
+        return view('menu.field',['fields'=>$fields]);
     }
 }

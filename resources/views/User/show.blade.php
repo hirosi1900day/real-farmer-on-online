@@ -46,6 +46,7 @@
                     </p>
                 </section>
                 <section v-show="activeTab === 'tabs-2'" class="background-gray-non-border">
+                    <div>{!! link_to_route('user.pay.index', 'ポイントを追加する') !!}</div>
                     <div>{!! link_to_route('user.instruction', '指示を追加する') !!}</div>
                     <div>{!! link_to_route('user.field', '畑を追加する') !!}</div>
                     <div>{!! link_to_route('user.plant', '植物を追加する') !!}</div>
