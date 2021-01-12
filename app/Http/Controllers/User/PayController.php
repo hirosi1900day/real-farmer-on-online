@@ -11,13 +11,14 @@ use Stripe\Charge;
 class PayController extends Controller
 {
     public function index(){
+        
         return view('pay.index');
     }
     public function payment(Request $request){
         try
         {
-            
-            Stripe::setApiKey(env('STRIPE_SECRET'));
+            if(\Auth::check()){
+                Stripe::setApiKey(env('STRIPE_SECRET'));
             
             $customer = Customer::create(array(
                 'email' => $request->stripeEmail,
@@ -29,8 +30,15 @@ class PayController extends Controller
                 'amount' => 1000,
                 'currency' => 'jpy'
             ));
-
+            
+            $user=\Auth::user();
+            $point=$user->point;
+            $user->point=$point+300;
+            $user->save();
             return redirect()->route('user.pay.complete');
+            }
+            return back();
+            
         }
         catch(Exception $e)
         {

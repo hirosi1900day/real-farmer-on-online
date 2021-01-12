@@ -27,14 +27,23 @@ class InstructionController extends Controller
         return view('admin.instruction.instruction',['instructions'=>$instructions]);
     }
     public function adminField_create(Request $request){
+        $request->validate([
+        'field_name'=>['required'],
+        'field_number'=>['required'],
+        ]);
         $adminField=new AdminField;
         $adminField->field_name=$request->field_name;
         $adminField->field_number=$request->field_number;
+        $adminField->used=true;
         $adminField->save();
         return redirect(route('admin.adminField'));
     }
    
     public function plantType_create(Request $request){
+        $request->validate([
+        'name'=>['required'],
+        'point'=>['required','integer'],
+        ]);
         $plantType=new PlantType;
         $plantType->name=$request->name;
         $plantType->point=$request->point;
@@ -43,6 +52,10 @@ class InstructionController extends Controller
     }
    
     public function instructons_create(Request $request){
+        $request->validate([
+        'name'=>['required'],
+        'point'=>['required','integer'],
+        ]);
         $instruction=new Instruction;
         $instruction->name=$request->name;
         $instruction->point=$request->point;

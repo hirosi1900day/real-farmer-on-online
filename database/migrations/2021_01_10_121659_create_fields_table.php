@@ -18,6 +18,7 @@ class CreateFieldsTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('adminField_id');
             $table->unsignedBigInteger('user_id');
+            $table->boolean('complete')->nullable();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

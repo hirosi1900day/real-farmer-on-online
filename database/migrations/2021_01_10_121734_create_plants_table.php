@@ -19,6 +19,7 @@ class CreatePlantsTable extends Migration
             $table->unsignedBigInteger('plantType_id');
             $table->unsignedBigInteger('field_id');
             $table->string('gallary');
+            $table->boolean('complete')->nullable();
             
             $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
         });
