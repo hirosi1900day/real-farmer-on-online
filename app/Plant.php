@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plant extends Model
 {
-      protected $fillable = ['plantType_id','gallary'];
+      protected $fillable = ['plantType_id','complete'];
       
       public function field()
     {

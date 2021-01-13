@@ -34,7 +34,7 @@
                        畑
                    </li>
                    <li v-bind:class="{active: activeTab === 'tabs-4'}" v-on:click="activeTab = 'tabs-4'">
-                       農作履歴
+                       
                    </li>
                 @endif
             </ul>
@@ -50,12 +50,13 @@
                     <div>{!! link_to_route('user.instruction', '指示を追加する') !!}</div>
                     <div>{!! link_to_route('user.field', '畑を追加する') !!}</div>
                     <div>{!! link_to_route('user.plant', '植物を追加する') !!}</div>
+                    <div>{!! link_to_route('user.myfield', 'マイ畑を見る') !!}</div>
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
                 
                 </section>
                 <section v-show="activeTab === 'tabs-4'" class="background-gray-non-border">
-                
+                　　　　　
                 </section>
             </section>
         </div>

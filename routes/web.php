@@ -39,11 +39,13 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/mypage','User\UserController@mypage')->name('user.mypage');
    Route::get('/user/edit','User\UserController@edit')->name('user.edit');
    Route::put('user/{id}/update','User\UserController@update')->name('user.update');
+   Route::get('/user/myfield','User\MenuController@myfield')->name('user.myfield');
    Route::get('/user/instruction','User\MenuController@intruction')->name('user.instruction');
    Route::get('/user/field','User\MenuController@field')->name('user.field');
-   Route::get('/user/plant','\User\MenuController@plant')->name('user.plant');
+   Route::get('/user/plant','User\MenuController@plant')->name('user.plant');
    Route::post('/user/menu/instruction','User\MenuController@instructionAdd')->name('user.menu.instruction');
    Route::post('/user/menu/field','User\MenuController@fieldAdd')->name('user.menu.field');
+   Route::post('/user/menu/plant','User\MenuController@plantAdd')->name('user.menu.plant');
    Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
    Route::post('/user/pay/payment','User\PayController@payment')->name('user.pay.payment');
    Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');

@@ -20,4 +20,8 @@ class Field extends Model
     {
         return $this->hasMany(Plant::class);
     }
+    public function instructions()
+    {
+        return $this->hasMany(User_instruction::class);
+    }
 }
