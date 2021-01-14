@@ -23,7 +23,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 
 //管理者画面
 Route::group(['middleware' => ['auth.admin']], function () {
-    Route::get('/admin/aa', 'Admin\LoginController@aa')->name('admin.aa');
+    Route::get('/admin/{id}/user/show', 'Admin\AdminController@userShow')->name('admin.user.show');
     Route::post('/admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
     Route::get('/admin/adminField', 'Admin\InstructionController@adminField')->name('admin.adminField');
     Route::get('/admin/plantType', 'Admin\InstructionController@plantType')->name('admin.plantType');
@@ -34,9 +34,12 @@ Route::group(['middleware' => ['auth.admin']], function () {
 });
 Route::group(['middleware' => ['auth']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+   //管理者よう
    Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
    Route::post('/admin/login/post', 'Admin\LoginController@login')->name('admin.login.post');
+   //user
    Route::get('/user/mypage','User\UserController@mypage')->name('user.mypage');
+   Route::get('/user/{id}/show','User\UserController@show')->name('user.show');
    Route::get('/user/edit','User\UserController@edit')->name('user.edit');
    Route::put('user/{id}/update','User\UserController@update')->name('user.update');
    Route::get('/user/myfield','User\MenuController@myfield')->name('user.myfield');
@@ -46,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::post('/user/menu/instruction','User\MenuController@instructionAdd')->name('user.menu.instruction');
    Route::post('/user/menu/field','User\MenuController@fieldAdd')->name('user.menu.field');
    Route::post('/user/menu/plant','User\MenuController@plantAdd')->name('user.menu.plant');
+   //決済関連
    Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
    Route::post('/user/pay/payment','User\PayController@payment')->name('user.pay.payment');
    Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');

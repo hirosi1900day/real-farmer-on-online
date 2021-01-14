@@ -21,36 +21,31 @@
         </div>
      </div>
     <div class="user_show_body">
-        <div id="mypage">
+        <div id="adminUserShow">
             <ul class="tabs-menu">
                 <li v-bind:class="{active: activeTab === 'tabs-1'}" v-on:click="activeTab = 'tabs-1'">
-                    自己紹介
+                    会員情報
                 </li>
-                @if($user->id==Auth::id())
-                    <li v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'">
-                       メニュー
-                   </li>
-                   <li v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
-                       畑
-                   </li>
-                   <li v-bind:class="{active: activeTab === 'tabs-4'}" v-on:click="activeTab = 'tabs-4'">
+                
+                <li v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'">
+                     メニュー
+                </li>
+                <li v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
+                     畑
+                </li>
+                <li v-bind:class="{active: activeTab === 'tabs-4'}" v-on:click="activeTab = 'tabs-4'">
                        
-                   </li>
-                @endif
+                </li>
+
             </ul>
             <section class="tabs-content">
                 <section v-show="activeTab === 'tabs-1'" class="padding">
-                    <p class="textForm">
-                        自己紹介：</br>
-                        {!! nl2br(e($user->self_introduce)) !!}
-                    </p>
+                    <div class="index-container shadow">
+                        会員ネーム：{{$user->name}}
+                    </div>
                 </section>
                 <section v-show="activeTab === 'tabs-2'" class="background-gray-non-border">
-                    <div>{!! link_to_route('user.pay.index', 'ポイントを追加する') !!}</div>
-                    <div>{!! link_to_route('user.instruction', '指示を追加する') !!}</div>
-                    <div>{!! link_to_route('user.field', '畑を追加する') !!}</div>
-                    <div>{!! link_to_route('user.plant', '植物を追加する') !!}</div>
-                    <div>{!! link_to_route('user.myfield', 'マイ畑を見る') !!}</div>
+                    
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
                 

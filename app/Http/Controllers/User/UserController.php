@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,6 +15,10 @@ class UserController extends Controller
     public function edit(){
         $user=\Auth::user();
         return view('User.edit',['user'=>$user]);
+    }
+    public function show($id){
+        $user=User::findOrFail($id);
+        return view('User.show',['user'=>$user]);
     }
     public function update(Request $request,$id){
         $request->validate([

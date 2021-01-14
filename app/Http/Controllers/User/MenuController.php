@@ -64,7 +64,7 @@ class MenuController extends Controller
                    $user->save();
                    $adminField->used=false;
                    $adminField->save();
-                   $request->user()->first()->fields()->create(['adminField_id'=>$number]);
+                   $request->user()->first()->fields()->create(['adminField_id'=>$number,'complete'=>false]);
                }else{
                    $error=['ポイントがありません　追加をしてください'];
                    return view('commons.error',['error'=>$error]);

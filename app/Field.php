@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Field extends Model
 {
-    protected $fillable = ['adminField_id'];
+    protected $fillable = ['adminField_id','complete'];
     
     public function user()
     {

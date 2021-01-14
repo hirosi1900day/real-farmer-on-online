@@ -22,7 +22,6 @@
                             {{-- ログアウトへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
                             <li class="dropdown-item">{!! link_to_route('admin.login', 'admin', [], ['class' => 'nav-link']) !!}</li>
-                            <li class="dropdown-item">{!! link_to_route('admin.aa', 'aa', [], ['class' => 'nav-link']) !!}</li>
                             
                         </ul>
                     </li>
