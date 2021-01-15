@@ -46,10 +46,12 @@
                                 <div class="index-container shadow">
                                     <div>{{$adminFields[$index]->field_name}}</div>
                                     <a href="{{route('admin.user.show',['id'=>$field->user()->first()->id])}}">
-                                         <div>{{$field->user()->first()->name}}</div>
+                                        <div>{{$field->user()->first()->name}}</div>
+                                    </a>
+                                    <a href="{{route('admin.fieldHistoryWrite',['id'=>$field->id])}}">
+                                        <button class="button">{{$field->user()->first()->name}}履歴を書き込む</button>
                                     </a>
                                 </div>
-                                
                                 
                               @endforeach
                           @else

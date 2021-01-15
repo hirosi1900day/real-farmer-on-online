@@ -26,22 +26,21 @@ class LoginController extends Controller
         ($request->password==$admin_password->password)&&
         ($request->key==$admin_password->key))
         {
-            $fields=Field::where('complete',false)->get();
+            $request->session()->put("admin_auth", true);
+            return redirect(route('admin.home'));
+        }
+        return back();
+    }
+    public function home(){
+        $fields=Field::where('complete',false)->get();
             $adminFields=[];
             foreach($fields as $index=>$field){
                 $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
             }
-           
-            $request->session()->put("admin_auth", true);
             $users=User::orderBy('created_at','desc')->get();
-            return view('admin.admin',['users'=>$users,
-                                      'fields'=>$fields,
-                                      'adminFields'=>$adminFields]);
-        }
-        return back();
-    }
-    public function aa(){
-        return view('admin.aa');
+        return view('admin.admin',['users'=>$users,
+                                   'fields'=>$fields,
+                                   'adminFields'=>$adminFields]);
     }
     function logout(Request $request){
         

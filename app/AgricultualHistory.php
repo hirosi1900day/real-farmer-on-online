@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AgricultualHistory extends Model
 {
-    protected $fillable = ['content'];
+    protected $fillable = ['contet'];
     
     public function user()
     {

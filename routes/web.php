@@ -23,6 +23,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 
 //管理者画面
 Route::group(['middleware' => ['auth.admin']], function () {
+    Route::get('/admin/home', 'Admin\LoginController@home')->name('admin.home');
     Route::get('/admin/{id}/user/show', 'Admin\AdminController@userShow')->name('admin.user.show');
     Route::post('/admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
     Route::get('/admin/adminField', 'Admin\InstructionController@adminField')->name('admin.adminField');
@@ -31,6 +32,8 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::post('/admin/adminField/post', 'Admin\InstructionController@adminField_create')->name('admin.adminField.post');
     Route::post('/admin/plantType/post', 'Admin\InstructionController@plantType_create')->name('admin.plamtType.post');
     Route::post('/admin/instructons/post', 'Admin\InstructionController@instructons_create')->name('admin.instructons.post');
+    Route::get('/admin/fieldHistoryWrite/{id}/create','Admin\AdminController@fieldHistoryWrite')->name('admin.fieldHistoryWrite');
+    Route::post('/admin/fieldHistoryWrite/store','Admin\AdminController@fieldHistoryWriteStore')->name('admin.historyWrite.create');
 });
 Route::group(['middleware' => ['auth']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
