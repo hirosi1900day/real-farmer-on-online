@@ -3,17 +3,15 @@
 @section('content')
 <div class="background-skyblue">
     <h1>登録ページ</h1>
-    {!! Form::open(['route'=>'admin.fieldhistoryWrite.create']) !!}
+    {!! Form::open(['route'=>'admin.plantHistoryWrite.create']) !!}
         <div class='form-group'>
-            {!! Form::label('title', 'userId') !!}
             {!! Form::hidden('user_id',$user->id,['class'=>'form-control']) !!}
         </div>
         <div class='form-group'>
-            {!! Form::label('title', 'fieldId') !!}
-            {!! Form::hidden('field_id',$field->id,['class'=>'form-control']) !!}
+            {!! Form::hidden('plant_id',$plant->id,['class'=>'form-control']) !!}
         </div>
         <div class='form-group'>
-            {!! Form::label('content', '農作文章') !!}
+            {!! Form::label('content', '指示項目履歴入力') !!}
             {!! Form::textarea('content',old('content'),['class'=>'form-control']) !!}
         </div>
     {!! Form::submit('保存する',['class'=>'btn btn-info']) !!}

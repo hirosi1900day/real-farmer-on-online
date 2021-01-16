@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,8 +31,13 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::post('/admin/adminField/post', 'Admin\InstructionController@adminField_create')->name('admin.adminField.post');
     Route::post('/admin/plantType/post', 'Admin\InstructionController@plantType_create')->name('admin.plamtType.post');
     Route::post('/admin/instructons/post', 'Admin\InstructionController@instructons_create')->name('admin.instructons.post');
+    //農作履歴書き込み
     Route::get('/admin/fieldHistoryWrite/{id}/create','Admin\AdminController@fieldHistoryWrite')->name('admin.fieldHistoryWrite');
-    Route::post('/admin/fieldHistoryWrite/store','Admin\AdminController@fieldHistoryWriteStore')->name('admin.historyWrite.create');
+    Route::post('/admin/fieldHistoryWrite/store','Admin\AdminController@fieldHistoryWriteStore')->name('admin.fieldhistoryWrite.create');
+    Route::get('/admin/instructionHistoryWrite/{id}/create','Admin\AdminController@instructionHistoryWrite')->name('admin.instructionHistoryWrite');
+    Route::post('/admin/instructionHistoryWrite/store','Admin\AdminController@instructionHistoryWriteStore')->name('admin.instructionHistoryWrite.create');
+     Route::get('/admin/plantHistoryWrite/{id}/create','Admin\AdminController@plantHistoryWrite')->name('admin.plantHistoryWrite');
+    Route::post('/admin/plantHistoryWrite/store','Admin\AdminController@plantHistoryWriteStore')->name('admin.plantHistoryWrite.create');
 });
 Route::group(['middleware' => ['auth']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
@@ -56,6 +60,5 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
    Route::post('/user/pay/payment','User\PayController@payment')->name('user.pay.payment');
    Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');
-   
 });
 

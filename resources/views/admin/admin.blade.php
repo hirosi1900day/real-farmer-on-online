@@ -16,6 +16,12 @@
                 <li v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
                    追加された畑
                 </li>
+                <li v-bind:class="{active: activeTab === 'tabs-4'}" v-on:click="activeTab = 'tabs-4'">
+                   追加された指示
+                </li>
+                <li v-bind:class="{active: activeTab === 'tabs-5'}" v-on:click="activeTab = 'tabs-5'">
+                   追加された種
+                </li>
             </ul>
             <section class="tabs-content">
                 <section v-show="activeTab === 'tabs-1'" class="padding">
@@ -50,6 +56,42 @@
                                     </a>
                                     <a href="{{route('admin.fieldHistoryWrite',['id'=>$field->id])}}">
                                         <button class="button">{{$field->user()->first()->name}}履歴を書き込む</button>
+                                    </a>
+                                </div>
+                                
+                              @endforeach
+                          @else
+                              <h>ありません</h>
+                          @endif
+                </section>
+                <section v-show="activeTab === 'tabs-4'" class="background-gray-non-border">
+                    @if (count($user_instructions) > 0)
+                              @foreach($user_instructions as $index=>$user_instruction)
+                                <div class="index-container shadow">
+                                    <div>{{$instructions[$index]->name}}</div>
+                                    <a href="{{route('admin.user.show',['id'=>$user_instruction->field()->first()->user()->first()->id])}}">
+                                        <div>{{$user_instruction->field()->first()->user()->first()->name}}</div>
+                                    </a>
+                                    <a href="{{route('admin.instructionHistoryWrite',['id'=>$user_instruction->id])}}">
+                                        <button class="button">{{$user_instruction->field()->first()->user()->first()->name}}履歴を書き込む</button>
+                                    </a>
+                                </div>
+                                
+                              @endforeach
+                          @else
+                              <h>ありません</h>
+                          @endif
+                </section>
+                <section v-show="activeTab === 'tabs-5'" class="background-gray-non-border">
+                    @if (count($plants) > 0)
+                              @foreach($plants as $index=>$plant)
+                                <div class="index-container shadow">
+                                    <div>{{$plantType[$index]->name}}</div>
+                                    <a href="{{route('admin.user.show',['id'=>$plant->field()->first()->user()->first()->id])}}">
+                                        <div>{{$plant->field()->first()->user()->first()->name}}</div>
+                                    </a>
+                                    <a href="{{route('admin.plantHistoryWrite',['id'=>$plant->id])}}">
+                                        <button class="button">{{$plant->field()->first()->user()->first()->name}}履歴を書き込む</button>
                                     </a>
                                 </div>
                                 

@@ -8,7 +8,10 @@ use App\Admin_password;
 use App\User;
 use App\AdminField;
 use App\Field;
-
+use App\User_instruction;
+use App\Instruction;
+use App\Plant;
+use App\PlantType;
 
 class LoginController extends Controller
 {
@@ -37,10 +40,24 @@ class LoginController extends Controller
             foreach($fields as $index=>$field){
                 $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
             }
+        $user_instructions=User_instruction::where('complete',false)->get();
+            $instructions=[];
+            foreach($user_instructions as $index=>$user_instruction){
+                $instructions[$index]=Instruction::findOrFail($user_instruction->instruction_id);
+            }
+        $plants=Plant::where('complete',false)->get();
+            $PlantType=[];
+            foreach($plants as $index=>$plant){
+                $plantType[$index]=PlantType::findOrFail($plant->plantType_id);
+            }
             $users=User::orderBy('created_at','desc')->get();
         return view('admin.admin',['users'=>$users,
                                    'fields'=>$fields,
-                                   'adminFields'=>$adminFields]);
+                                   'adminFields'=>$adminFields,
+                                   'user_instructions'=>$user_instructions,
+                                   'instructions'=>$instructions,
+                                   'plants'=>$plants,
+                                   'plantType'=>$plantType]);
     }
     function logout(Request $request){
         
