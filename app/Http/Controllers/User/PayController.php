@@ -10,6 +10,7 @@ use Stripe\Charge;
 
 class PayController extends Controller
 {
+    
     public function index(){
         
         return view('pay.index');

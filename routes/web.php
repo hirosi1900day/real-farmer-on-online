@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('welcome');
 });
@@ -57,8 +58,12 @@ Route::group(['middleware' => ['auth']], function () {
    Route::post('/user/menu/field','User\MenuController@fieldAdd')->name('user.menu.field');
    Route::post('/user/menu/plant','User\MenuController@plantAdd')->name('user.menu.plant');
    //決済関連
-   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
+   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index')->middleware('verified');
    Route::post('/user/pay/payment','User\PayController@payment')->name('user.pay.payment');
    Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

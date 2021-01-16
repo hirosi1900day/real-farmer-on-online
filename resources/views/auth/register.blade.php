@@ -46,7 +46,7 @@
                 
                 <div class="form-group">
                     {!! Form::label('telphone_number', 'tel') !!}
-                    {!! Form::text('telphone_number',old('telphone_number'), ['class' => 'form-control']) !!}
+                    {!! Form::text('telphone_number',old('telphone_number'),['class' => 'form-control']) !!}
                 </div>
 
                 {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
