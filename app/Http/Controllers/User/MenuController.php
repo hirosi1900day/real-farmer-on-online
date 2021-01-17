@@ -17,7 +17,10 @@ class MenuController extends Controller
         if(\Auth::check()){
             $fields=Field::get();
             $instructions=Instruction::get();
-            return view('menu.myfield',['fields'=>$fields,'instructions'=>$instructions]);
+            $plants=PlantType::orderBy('created_at','desc')->get();
+            return view('menu.myfield',['fields'=>$fields,
+                                        'instructions'=>$instructions,
+                                        'plants'=>$plants]);
         }
     }
     public function intruction(){
@@ -47,7 +50,7 @@ class MenuController extends Controller
                    return view('commons.error',['error'=>$error]);
                }
            } 
-           return redirect('/');
+           return back();
         }
         $error=['申し訳ありません、本人のみアクセス可能です、ログインをやり直してください'];
         return view('commons.error',['error'=>$error]);
@@ -70,7 +73,7 @@ class MenuController extends Controller
                    return view('commons.error',['error'=>$error]);
                }
            } 
-           return redirect('/');
+           return back();
         }
         $error=['申し訳ありません、本人のみアクセス可能です、ログインをやり直してください'];
         return view('commons.error',['error'=>$error]);
@@ -90,7 +93,7 @@ class MenuController extends Controller
                    return view('commons.error',['error'=>$error]);
                }
            } 
-           return redirect('/');
+           return back();
         }
         $error=['申し訳ありません、本人のみアクセス可能です、ログインをやり直してください'];
         return view('commons.error',['error'=>$error]);

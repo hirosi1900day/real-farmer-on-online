@@ -10,6 +10,8 @@ use App\User_instruction;
 use App\Instruction;
 use App\Plant;
 use App\PlantType;
+use App\Daily;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -58,4 +60,27 @@ class AdminController extends Controller
         $plant->save();
         return redirect(route('admin.home'));
     }
+    public function dailyCreate($id){
+        $field=Field::findOrFail($id);
+        return view('admin.dailyCreate.dailyCreate',['field'=>$field]);
+    }
+    public function dailystore(Request $request){
+        $request->validate([
+        'content'=>['required'],
+        'gallary'=>['file','mimes:jpeg,png,jpg,bmb','max:1048','required',],
+       ]);
+       
+        if($file = $request->gallary){
+        //保存するファイルに名前をつける    
+        $fileName = time().'.'.$file->getClientOriginalExtension();
+        $path = Storage::disk('s3')->putFileAs('/dailies',$file, $fileName,'public');
+        }else{
+        //画像が登録されなかった時はから文字をいれる
+        $path = "";
+        }
+        $field=Field::findOrFail($request->field_id);
+        $field->dailies()->create(['content'=>$request->content,'gallary'=>$path,'plantType_id'=>0]);
+        return redirect(route('admin.home'));
+    }
+    
 }

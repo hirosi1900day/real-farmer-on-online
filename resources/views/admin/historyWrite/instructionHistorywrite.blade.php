@@ -9,7 +9,6 @@
             {!! Form::hidden('user_id',$user->id,['class'=>'form-control']) !!}
         </div>
         <div class='form-group'>
-           
             {!! Form::hidden('user_instruction_id',$user_instruction->id,['class'=>'form-control']) !!}
         </div>
         <div class='form-group'>

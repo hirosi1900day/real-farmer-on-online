@@ -51,6 +51,7 @@
                     <div>{!! link_to_route('user.field', '畑を追加する') !!}</div>
                     <div>{!! link_to_route('user.plant', '植物を追加する') !!}</div>
                     <div>{!! link_to_route('user.myfield', 'マイ畑を見る') !!}</div>
+                    <div>{!! link_to_route('user.daily.index', '日記を見る') !!}</div>
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
                 

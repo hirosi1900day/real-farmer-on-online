@@ -1,17 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="background-skyblue"> 
     <h>plantを追加</h>
-    @if(count($fields)>0)
-        @foreach($fields as $field)
-            <div>{{$field->adminField_id}}{!! link_to_route('user.plant', '植物を追加する') !!}</div>
-        @endforeach
-    @endif
+        <form action="{{ route('user.menu.plant') }}" method="POST">
+            {{ csrf_field() }}
+            <p>たねを追加す（複数回答可）: 
+            @foreach($plants as $index=>$plant)
+                <input type="checkbox" name="plant[]" value="{{$plant->id}}">{{$plant->name}}
+            @endforeach
+            </p>
+            <p><input type="submit" value="送信"></p>
+        </form>
     <h>指示をする</h>
-    @if(count($fields)>0)
-        @foreach($fields as $field)
-            <div>{{$field->adminField_id}}{!! link_to_route('user.instruction', '指示を追加する') !!}</div>
-        @endforeach
-    @endif
-    
+        <form action="{{ route('user.menu.instruction') }}" method="POST">
+            {{ csrf_field() }}
+            <p>指示を追加する（複数回答可）: 
+                @foreach($instructions as $index=>$instruction)
+                    <input type="checkbox" name="instruction[]" value="{{$instruction->id}}">{{$instruction->name}}
+                @endforeach
+            </p>
+            <p><input type="submit" value="送信"></p>
+　　    </form>
+</div>
 @endsection

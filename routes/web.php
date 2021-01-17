@@ -23,9 +23,13 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 
 //管理者画面
 Route::group(['middleware' => ['auth.admin']], function () {
+    //管理者ホーム
     Route::get('/admin/home', 'Admin\LoginController@home')->name('admin.home');
+    //管理者ようユーザー詳細
     Route::get('/admin/{id}/user/show', 'Admin\AdminController@userShow')->name('admin.user.show');
+    //管理者ログアウト
     Route::post('/admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
+    //指示追加関連
     Route::get('/admin/adminField', 'Admin\InstructionController@adminField')->name('admin.adminField');
     Route::get('/admin/plantType', 'Admin\InstructionController@plantType')->name('admin.plantType');
     Route::get('/admin/instructons', 'Admin\InstructionController@instructons')->name('admin.instructons');
@@ -37,16 +41,21 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::post('/admin/fieldHistoryWrite/store','Admin\AdminController@fieldHistoryWriteStore')->name('admin.fieldhistoryWrite.create');
     Route::get('/admin/instructionHistoryWrite/{id}/create','Admin\AdminController@instructionHistoryWrite')->name('admin.instructionHistoryWrite');
     Route::post('/admin/instructionHistoryWrite/store','Admin\AdminController@instructionHistoryWriteStore')->name('admin.instructionHistoryWrite.create');
-     Route::get('/admin/plantHistoryWrite/{id}/create','Admin\AdminController@plantHistoryWrite')->name('admin.plantHistoryWrite');
+    Route::get('/admin/plantHistoryWrite/{id}/create','Admin\AdminController@plantHistoryWrite')->name('admin.plantHistoryWrite');
     Route::post('/admin/plantHistoryWrite/store','Admin\AdminController@plantHistoryWriteStore')->name('admin.plantHistoryWrite.create');
+    //管理者日記書き込み
+    Route::get('/admin/{id}/dailyCreate','Admin\AdminController@dailyCreate')->name('admin.dailyCreate');
+    Route::post('/admin/dailyStore','Admin\AdminController@dailystore')->name('admin.dailyStore');
+    
 });
 Route::group(['middleware' => ['auth']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
    //管理者よう
    Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
    Route::post('/admin/login/post', 'Admin\LoginController@login')->name('admin.login.post');
-   //user
+   //userMYpage
    Route::get('/user/mypage','User\UserController@mypage')->name('user.mypage');
+   //user詳細
    Route::get('/user/{id}/show','User\UserController@show')->name('user.show');
    Route::get('/user/edit','User\UserController@edit')->name('user.edit');
    Route::put('user/{id}/update','User\UserController@update')->name('user.update');
@@ -57,13 +66,14 @@ Route::group(['middleware' => ['auth']], function () {
    Route::post('/user/menu/instruction','User\MenuController@instructionAdd')->name('user.menu.instruction');
    Route::post('/user/menu/field','User\MenuController@fieldAdd')->name('user.menu.field');
    Route::post('/user/menu/plant','User\MenuController@plantAdd')->name('user.menu.plant');
+   //user日記関連
+   Route::get('/user/dailyIndex','User\DailyController@index')->name('user.daily.index');
+   Route::get('/user/{id}/show','User\DailyController@show')->name('user.daily.show');
+   
    //決済関連
    Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index')->middleware('verified');
    Route::post('/user/pay/payment','User\PayController@payment')->name('user.pay.payment');
    Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');
 });
-
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

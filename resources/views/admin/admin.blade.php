@@ -22,6 +22,9 @@
                 <li v-bind:class="{active: activeTab === 'tabs-5'}" v-on:click="activeTab = 'tabs-5'">
                    追加された種
                 </li>
+                <li v-bind:class="{active: activeTab === 'tabs-6'}" v-on:click="activeTab = 'tabs-6'">
+                   日記を書く
+                </li>
             </ul>
             <section class="tabs-content">
                 <section v-show="activeTab === 'tabs-1'" class="padding">
@@ -84,14 +87,44 @@
                 </section>
                 <section v-show="activeTab === 'tabs-5'" class="background-gray-non-border">
                     @if (count($plants) > 0)
-                              @foreach($plants as $index=>$plant)
+                        @foreach($plants as $index=>$plant)
+                            <div class="index-container shadow">
+                                <div>{{$plantType[$index]->name}}</div>
+                                <a href="{{route('admin.user.show',['id'=>$plant->field()->first()->user()->first()->id])}}">
+                                    <div>{{$plant->field()->first()->user()->first()->name}}</div>
+                                </a>
+                                <a href="{{route('admin.plantHistoryWrite',['id'=>$plant->id])}}">
+                                    <button class="button">{{$plant->field()->first()->user()->first()->name}}履歴を書き込む</button>
+                                </a>
+                            </div>
+                                
+                        @endforeach
+                    @else
+                        <h>ありません</h>
+                    @endif
+                </section>
+                <section v-show="activeTab === 'tabs-6'" class="background-gray-non-border">
+                    @if (count($used_fields) > 0)
+                              @foreach($used_fields as $index=>$used_field)
                                 <div class="index-container shadow">
-                                    <div>{{$plantType[$index]->name}}</div>
-                                    <a href="{{route('admin.user.show',['id'=>$plant->field()->first()->user()->first()->id])}}">
-                                        <div>{{$plant->field()->first()->user()->first()->name}}</div>
+                                    @if(count($used_field->dailies()->get())>0)
+                                        @if(((int)date('d')-
+                                        (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('d')+
+                                        (int)date('m')-
+                                        (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('m'))>=7)
+                                            <div>日記を更新してください</div>
+                                        @endif
+                                    @else
+                                        @if(((int)date('d')-(int)$used_field->created_at->format('d')+(int)date('m')-(int)$used_field->created_at->format('m'))>=7)
+                                             <div>初めての日記を更新してください</div>
+                                        @endif
+                                    @endif
+                                    <div>畑の名前：{{$used_adminFields[$index]->field_name}}</div>
+                                    <a href="{{route('admin.user.show',['id'=>$used_field->user()->first()->id])}}">
+                                        <div>{{$used_field->user()->first()->name}}</div>
                                     </a>
-                                    <a href="{{route('admin.plantHistoryWrite',['id'=>$plant->id])}}">
-                                        <button class="button">{{$plant->field()->first()->user()->first()->name}}履歴を書き込む</button>
+                                    <a href="{{route('admin.dailyCreate',['id'=>$used_field->id])}}">
+                                        <button class="button">{{$used_field->user()->first()->name}}日記を書き込む</button>
                                     </a>
                                 </div>
                                 

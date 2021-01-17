@@ -50,6 +50,11 @@ class LoginController extends Controller
             foreach($plants as $index=>$plant){
                 $plantType[$index]=PlantType::findOrFail($plant->plantType_id);
             }
+        $used_fields=Field::get();
+        $used_adminFields=[];
+            foreach($used_fields as $index=>$used_field){
+                $used_adminFields[$index]=AdminField::findOrFail($used_field->adminField_id);
+            }
             $users=User::orderBy('created_at','desc')->get();
         return view('admin.admin',['users'=>$users,
                                    'fields'=>$fields,
@@ -57,7 +62,10 @@ class LoginController extends Controller
                                    'user_instructions'=>$user_instructions,
                                    'instructions'=>$instructions,
                                    'plants'=>$plants,
-                                   'plantType'=>$plantType]);
+                                   'plantType'=>$plantType,
+                                   'used_fields'=>$used_fields,
+                                   'used_adminFields'=>$used_adminFields,
+                                   ]);
     }
     function logout(Request $request){
         
