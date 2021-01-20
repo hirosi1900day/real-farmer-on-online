@@ -48,6 +48,8 @@
                     <div class="index-container shadow">{!! link_to_route('admin.adminField', 'field') !!}</div>
                     <div class="index-container shadow">{!! link_to_route('admin.plantType', 'plantType') !!}</div>
                     <div class="index-container shadow">{!! link_to_route('admin.instructons', 'instructons') !!}</div>
+                    <div class="index-container shadow">{!! link_to_route('chat.user_index', 'チャットユーザー一覧') !!}</div>
+                    <div class="index-container shadow">{!! link_to_route('user_request.index', '要望一覧') !!}</div>
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
                     @if (count($fields) > 0)

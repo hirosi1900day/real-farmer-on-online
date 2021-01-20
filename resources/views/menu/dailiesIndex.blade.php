@@ -1,21 +1,25 @@
 @extends('layouts.app')
-
+@section('head')
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" 
+    crossorigin="anonymous"></script>
+   <script src="{{ secure_asset('/js/turn.js') }}"></script>
+@endsection
 @section('content')
-    @if (count($fields) > 0)
-        @foreach($fields as $index=>$field)
-            @if(count($field->dailies()->get())>0)
-                <div class="index-container shadow">
-                    <div>{{$adminFields[$index]->field_name}}</div>
-                    @foreach($field->dailies()->get() as $daily)
-                        <a href="{{route('user.daily.show',['id'=>$daily->id])}}">
-                            <div>{{$daily->id}}</div>
-                        </a>
-                    @endforeach
-                </div>
-            @endif
-            
-        @endforeach
-    @else
-        <h>ありません</h>
-    @endif
+    
+        <div id="flipbook"> 
+                <div>page1</div>
+                <div>page2</div>
+                <div>page3</div>
+        </div>
+   
+    <h1>ありません</h1>
+    
+    
+@endsection
+@section('low')
+<script type="text/javascript">
+    $("#flipbook").turn();
+</script>
 @endsection

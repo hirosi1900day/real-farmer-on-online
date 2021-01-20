@@ -16,8 +16,10 @@ use App\PlantType;
 class LoginController extends Controller
 {
     public function showLoginForm(){
-        if((\Auth::user()->name=='realFarmerAdmin')&&
-        (\Auth::user()->email=='realFarmerAdmin@email.com')){
+       
+        if((\Auth::user()->name==config('const.admin_user')[1])&&
+        (\Auth::user()->email==config('const.admin_user')[0])){
+            
             return view('admin.login');
         }
         return redirect('/');
@@ -46,7 +48,7 @@ class LoginController extends Controller
                 $instructions[$index]=Instruction::findOrFail($user_instruction->instruction_id);
             }
         $plants=Plant::where('complete',false)->get();
-            $PlantType=[];
+            $plantType=[];
             foreach($plants as $index=>$plant){
                 $plantType[$index]=PlantType::findOrFail($plant->plantType_id);
             }
@@ -56,6 +58,7 @@ class LoginController extends Controller
                 $used_adminFields[$index]=AdminField::findOrFail($used_field->adminField_id);
             }
             $users=User::orderBy('created_at','desc')->get();
+        
         return view('admin.admin',['users'=>$users,
                                    'fields'=>$fields,
                                    'adminFields'=>$adminFields,

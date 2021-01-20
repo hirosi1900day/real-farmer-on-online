@@ -39,13 +39,6 @@ body{
   line-height: 70px;
   font-weight: bold;
 }
-.text{
-  margin:2px 2px;
-  padding:0;
-  background:white;
-  font-size:14px;
-  border-radius:3px;
-}
 .text-title{
   color: #555;
   font-weight: 600;
@@ -143,11 +136,52 @@ body{
 
 
 .index-container{
-    margin: 5px 0 0 0;
+    margin: 5px;
     padding: 2vh;
     /*border:solid 1px black;*/
     border-radius:3px;
     border-radius: 6px;
     background-color: white;
     position: relative;
+}
+.index-image{
+    width:90%;
+    object-fit: cover;
+    max-height: 85px;
+    /*border-radius: 5px;*/
+}
+.text{
+    font-size:6px;
+}
+.container-welcome{
+    display: grid;
+    text-align: center;
+    padding:0;
+    width: 100%;
+    margin-left: 5px;
+    grid-template-columns: repeat(2, 48%);
+
+}
+@media (min-width: 700px) {
+  .container-welcome{
+    display: grid;
+    text-align: center;
+    padding:0;
+    width: 98%;
+    margin-left:5px;
+    grid-template-columns: repeat(3,31.1%);
+}
+}
+
+.odd {
+  background-color: blue;/* 奇数ページを青色に */
+}
+.even {
+  background-color: green;/* 偶数ページを緑色に */
+}
+
+#flipbook {
+  width: 400px; /* flipbook自体の横幅なので各ページは200px */
+  height: 400px;
+  margin: 10% 20%; /* 一番左端だとたまに見切れるので適当に移動 */
 }

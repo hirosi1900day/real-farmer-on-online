@@ -46,7 +46,12 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //管理者日記書き込み
     Route::get('/admin/{id}/dailyCreate','Admin\AdminController@dailyCreate')->name('admin.dailyCreate');
     Route::post('/admin/dailyStore','Admin\AdminController@dailystore')->name('admin.dailyStore');
-    
+    //チャットユーザー一覧
+    Route::get('chat/user_index', 'User\ChatController@admin_index')->name('chat.user_index');
+    //request要望
+    Route::get('user_request/index', 'User\RequestController@index')->name('user_request.index');
+    Route::get('user_request/{id}/show', 'User\RequestController@show')->name('user_request.show');
+    Route::post('user_request/{id}/delete', 'User\RequestController@delete')->name('user_request.delete');
 });
 Route::group(['middleware' => ['auth']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
@@ -57,7 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/mypage','User\UserController@mypage')->name('user.mypage');
    //user詳細
    Route::get('/user/{id}/show','User\UserController@show')->name('user.show');
-   Route::get('/user/edit','User\UserController@edit')->name('user.edit');
+   Route::get('/user/{user}/edit','User\UserController@edit')->name('user.edit');
    Route::put('user/{id}/update','User\UserController@update')->name('user.update');
    Route::get('/user/myfield','User\MenuController@myfield')->name('user.myfield');
    Route::get('/user/instruction','User\MenuController@intruction')->name('user.instruction');
@@ -72,8 +77,27 @@ Route::group(['middleware' => ['auth']], function () {
    
    //決済関連
    Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index')->middleware('verified');
-   Route::post('/user/pay/payment','User\PayController@payment')->name('user.pay.payment');
+   Route::post('/user/pay/payment','User\PayController@payment1000')->name('user.pay.payment1000');
+   Route::post('/user/pay/payment3000','User\PayController@payment3000')->name('user.pay.payment3000');
+   Route::post('/user/pay/payment5000','User\PayController@payment5000')->name('user.pay.payment5000');
    Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');
+   //チャット関連
+   Route::get('chat/{id}/show', 'User\ChatController@show')->name('chat.show');
+   Route::get('chat/{id}/view', 'User\ChatController@view')->name('chat.view');
+   Route::post('chat/{id}/store', 'User\ChatController@store')->name('chat.store');
+   Route::get('chat/create_chatroom', 'User\ChatController@create_chatroom')->name('chat.create_chatroom');
+   //コミュニティーチャット
+   Route::get('community/show', 'User\CommunityChatController@show')->name('community.show');
+   Route::get('community/view', 'User\CommunityChatController@view')->name('community.view');
+   Route::post('community/store', 'User\CommunityChatController@store')->name('community.store');
+   //request要望
+   Route::get('user_request/create', 'User\RequestController@view')->name('user_request.create');
+   Route::get('user_request/complete', 'User\RequestController@complete')->name('user_request.complete');
+   Route::post('user_request/store', 'User\RequestController@store')->name('user_request.store');
+  
+   
+   
+   
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

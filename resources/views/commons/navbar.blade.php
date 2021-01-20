@@ -1,4 +1,4 @@
-<header class="mb-4">
+<header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         {{-- トップページへのリンク --}}
         <a class="navbar-brand" href="/">Microposts</a>
@@ -18,10 +18,12 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             {{-- ユーザ詳細ページへのリンク --}}
                             <li class="dropdown-item"><a href="#">My profile</a></li>
+                            <li class="dropdown-item">{!! link_to_route('chat.create_chatroom', 'chat', [], ['class' => 'nav-link']) !!}</li>
                             <li class="dropdown-divider"></li>
                             {{-- ログアウトへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
                             <li class="dropdown-item">{!! link_to_route('admin.login', 'admin', [], ['class' => 'nav-link']) !!}</li>
+                            
                             
                         </ul>
                     </li>

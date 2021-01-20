@@ -15,7 +15,11 @@
                 {!! Form::model($user, ['route' => ['user.update','id'=>$user->id],'enctype'=>'multipart/form-data','method'=>'put']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'name:') !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                    {!! Form::text('name', old($user->name), ['class' => 'form-control']) !!}
+                </div>
+                <div class='form-group'>
+                    {!! Form::label('image_location','プロフィール画像を登録する') !!}
+                    {!! Form::file('image_location') !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('self_introduce', '自己紹介:') !!}
