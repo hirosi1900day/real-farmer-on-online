@@ -84,14 +84,15 @@ class ChatController extends Controller
         $notification=[];
         foreach($admin_chat_rooms as $index=>$admin_chat_room){
             $users[$index]=User::findOrFail($admin_chat_room->user_id);
-            if(count($admin_chat_room->first()->message()->where('user_id',User::where('email',config('const.admin_user')[0])->pluck('id')->first())->get())>0){
-               $notification[$index]=$admin_chat_room->first()->message()->orderBy('created_at','desc')->first()->user_id
-                ==User::where('email',config('const.admin_user')[0])->pluck('id')->first(); 
+            if(count($admin_chat_room->message()->get())>0){
+                $notification[$index]=($admin_chat_room->message()->orderBy('created_at','desc')->first()->user_id
+                ===User::findOrFail($admin_chat_room->admin_user_id)->id);
             }else{
-               $notification[$index]=true;
+                $notification[$index]=true;
             }
         }
         return view('chat.user_index',['users'=>$users,'chat_rooms'=>$admin_chat_rooms,'notification'=>$notification]);
     }
+    
   
 }

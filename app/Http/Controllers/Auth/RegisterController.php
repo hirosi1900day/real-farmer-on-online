@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -73,5 +74,7 @@ class RegisterController extends Controller
             'postal_code'=>$data['postal_code'],
             'telphone_number'=>$data['telphone_number'],
         ]);
+        
     }
+    
 }
