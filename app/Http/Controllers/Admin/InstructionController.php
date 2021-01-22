@@ -29,7 +29,7 @@ class InstructionController extends Controller
     public function adminField_create(Request $request){
         $request->validate([
         'field_name'=>['required'],
-        'field_number'=>['required'],
+        'field_number'=>['required','integer'],
         ]);
         $adminField=new AdminField;
         $adminField->field_name=$request->field_name;

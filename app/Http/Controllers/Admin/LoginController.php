@@ -19,11 +19,9 @@ class LoginController extends Controller
        
         if((\Auth::user()->name==config('const.admin_user')[1])&&
         (\Auth::user()->email==config('const.admin_user')[0])){
-            
             return view('admin.login');
         }
         return redirect('/');
-        
     }
     public function login(Request $request){
         $admin_password=Admin_password::first();
@@ -44,13 +42,17 @@ class LoginController extends Controller
             }
         $user_instructions=User_instruction::where('complete',false)->get();
             $instructions=[];
+            $adminFields_For_instruction=[];
             foreach($user_instructions as $index=>$user_instruction){
                 $instructions[$index]=Instruction::findOrFail($user_instruction->instruction_id);
+                $adminFields_For_instruction[$index]=AdminField::findOrFail($user_instruction->field()->first()->adminField_id);
             }
         $plants=Plant::where('complete',false)->get();
             $plantType=[];
+            $adminField_For_plant=[];
             foreach($plants as $index=>$plant){
                 $plantType[$index]=PlantType::findOrFail($plant->plantType_id);
+                $adminField_For_plant[$index]=AdminField::findOrFail($plant->field()->first()->adminField_id);
             }
         $used_fields=Field::get();
         $used_adminFields=[];
@@ -68,6 +70,8 @@ class LoginController extends Controller
                                    'plantType'=>$plantType,
                                    'used_fields'=>$used_fields,
                                    'used_adminFields'=>$used_adminFields,
+                                   'adminFields_For_instruction'=>$adminFields_For_instruction,
+                                   'adminField_For_plant'=>$adminField_For_plant
                                    ]);
     }
     function logout(Request $request){

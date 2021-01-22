@@ -24,4 +24,7 @@ class Field extends Model
     {
         return $this->hasMany(User_instruction::class);
     }
+    public function admin_field(){
+        return $this->hasOne(AdminField::class);
+    }
 }

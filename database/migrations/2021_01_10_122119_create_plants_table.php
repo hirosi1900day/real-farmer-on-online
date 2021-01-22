@@ -22,6 +22,7 @@ class CreatePlantsTable extends Migration
             $table->boolean('complete')->nullable();
             
             $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
+            $table->foreign('plantType_id')->references('id')->on('plant_types')->onDelete('cascade');
         });
     }
 

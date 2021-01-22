@@ -24,27 +24,51 @@ class MenuController extends Controller
         }
     }
     public function intruction(){
+        $fields=\Auth::user()->fields()->get();
+        $adminFields=[];
+        if(count($fields)==0){
+            $error=['畑がありません、畑を追加してください'];
+            return view('commons.error',['error'=>$error]);
+        }else{
+            foreach($fields as $index=>$field){
+                $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
+            }
+        }
+        
         $instructions=Instruction::orderBy('created_at','desc')->get();
-        return view('menu.instruction',['instructions'=>$instructions]);
+        return view('menu.instruction',['instructions'=>$instructions,'fields'=>$fields,'adminFields'=>$adminFields]);
     }
     public function plant(){
+        $fields=\Auth::user()->fields()->get();
+        $adminFields=[];
+        if(count($fields)==0){
+            $error=['畑がありません、畑を追加してください'];
+            return view('commons.error',['error'=>$error]);
+        }else{
+            foreach($fields as $index=>$field){
+                $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
+            }
         $plants=PlantType::orderBy('created_at','desc')->get();
-        return view('menu.plant',['plants'=>$plants]);
+        return view('menu.plant',['plants'=>$plants,'fields'=>$fields,'adminFields'=>$adminFields]);
+        }
     }
     public function field(){
         $fields=AdminField::orderBy('created_at','desc')->get();
         return view('menu.field',['fields'=>$fields]);
     }
     public function instructionAdd(Request $request){
+        $request->validate([
+            'instruction'=>['required'],
+            'field'=>['required'],
+        ]);
         $user=\Auth::user();
         if(\Auth::check()){
-           $user=\Auth::user();
            foreach($request->instruction as $number){
                $instruction=Instruction::findOrFail($number);
                if((($user->point)-($instruction->point))>=0){
                    $user->point=(($user->point)-($instruction->point));
                    $user->save();
-                   $request->user()->first()->fields()->first()->instructions()->create(['instruction_id'=>$number,'complete'=>false]);
+                   Field::findOrFail($request->field)->instructions()->create(['instruction_id'=>$number,'complete'=>false]);
                }else{
                    $error=['ポイントがありません　追加をしてください'];
                    return view('commons.error',['error'=>$error]);
@@ -59,7 +83,6 @@ class MenuController extends Controller
     public function fieldAdd(Request $request){
         $user=\Auth::user();
         if(\Auth::check()){
-           $user=\Auth::user();
            foreach($request->field as $number){
                $adminField=AdminField::findOrFail($number);
                if((($user->point)-($adminField->field_number))>=0){
@@ -67,7 +90,7 @@ class MenuController extends Controller
                    $user->save();
                    $adminField->used=false;
                    $adminField->save();
-                   $request->user()->first()->fields()->create(['adminField_id'=>$number,'complete'=>false]);
+                   $user->fields()->create(['adminField_id'=>$number,'complete'=>false]);
                }else{
                    $error=['ポイントがありません　追加をしてください'];
                    return view('commons.error',['error'=>$error]);
@@ -79,15 +102,19 @@ class MenuController extends Controller
         return view('commons.error',['error'=>$error]);
     }
     public function plantAdd(Request $request){
+        $request->validate([
+            'plant'=>['required'],
+            'field'=>['required'],
+        ]);
         $user=\Auth::user();
         if(\Auth::check()){
-           $user=\Auth::user();
            foreach($request->plant as $number){
                $plantType=PlantType::findOrFail($number);
                if((($user->point)-($plantType->point))>=0){
                    $user->point=(($user->point)-($plantType->point));
                    $user->save();
-                   $request->user()->first()->fields()->first()->plants()->create(['plantType_id'=>$number,'complete'=>false]);
+                   
+                   Field::findOrFail($request->field)->plants()->create(['plantType_id'=>$number,'complete'=>false]);
                }else{
                    $error=['ポイントがありません　追加をしてください'];
                    return view('commons.error',['error'=>$error]);
@@ -98,8 +125,6 @@ class MenuController extends Controller
         $error=['申し訳ありません、本人のみアクセス可能です、ログインをやり直してください'];
         return view('commons.error',['error'=>$error]);
     }
-    public function daily(){
-        
-    }
+   
     
 }

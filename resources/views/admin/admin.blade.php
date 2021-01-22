@@ -73,6 +73,8 @@
                     @if (count($user_instructions) > 0)
                               @foreach($user_instructions as $index=>$user_instruction)
                                 <div class="index-container shadow">
+                                    
+                                    <div>{{$adminFields_For_instruction[$index]->field_name}}</div>
                                     <div>{{$instructions[$index]->name}}</div>
                                     <a href="{{route('admin.user.show',['id'=>$user_instruction->field()->first()->user()->first()->id])}}">
                                         <div>{{$user_instruction->field()->first()->user()->first()->name}}</div>
@@ -91,6 +93,7 @@
                     @if (count($plants) > 0)
                         @foreach($plants as $index=>$plant)
                             <div class="index-container shadow">
+                                <div>{{$adminField_For_plant[$index]->field_name}}</div>
                                 <div>{{$plantType[$index]->name}}</div>
                                 <a href="{{route('admin.user.show',['id'=>$plant->field()->first()->user()->first()->id])}}">
                                     <div>{{$plant->field()->first()->user()->first()->name}}</div>
@@ -109,25 +112,34 @@
                     @if (count($used_fields) > 0)
                               @foreach($used_fields as $index=>$used_field)
                                 <div class="index-container shadow">
+                                    
                                     @if(count($used_field->dailies()->get())>0)
                                         @if(((int)date('d')-
                                         (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('d')+
                                         (int)date('m')-
                                         (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('m'))>=7)
                                             <div>日記を更新してください</div>
+                                            <div>畑の名前：{{$used_adminFields[$index]->field_name}}</div>
+                                            <a href="{{route('admin.user.show',['id'=>$used_field->user()->first()->id])}}">
+                                                <div>{{$used_field->user()->first()->name}}</div>
+                                            </a>
+                                            <a href="{{route('admin.dailyCreate',['id'=>$used_field->id])}}">
+                                                <button class="button">{{$used_field->user()->first()->name}}日記を書き込む</button>
+                                            </a>
                                         @endif
                                     @else
-                                        @if(((int)date('d')-(int)$used_field->created_at->format('d')+(int)date('m')-(int)$used_field->created_at->format('m'))>=7)
-                                             <div>初めての日記を更新してください</div>
+                                        @if(((int)date('d')-(int)$used_field->created_at->format('d')+(int)date('m')-(int)$used_field->created_at->format('m'))>=0)
+                                            <div>初めての日記を更新してください</div>
+                                            <div>畑の名前：{{$used_adminFields[$index]->field_name}}</div>
+                                            <a href="{{route('admin.user.show',['id'=>$used_field->user()->first()->id])}}">
+                                                <div>{{$used_field->user()->first()->name}}</div>
+                                            </a>
+                                            <a href="{{route('admin.dailyCreate',['id'=>$used_field->id])}}">
+                                                <button class="button">{{$used_field->user()->first()->name}}日記を書き込む</button>
+                                            </a>
                                         @endif
                                     @endif
-                                    <div>畑の名前：{{$used_adminFields[$index]->field_name}}</div>
-                                    <a href="{{route('admin.user.show',['id'=>$used_field->user()->first()->id])}}">
-                                        <div>{{$used_field->user()->first()->name}}</div>
-                                    </a>
-                                    <a href="{{route('admin.dailyCreate',['id'=>$used_field->id])}}">
-                                        <button class="button">{{$used_field->user()->first()->name}}日記を書き込む</button>
-                                    </a>
+                                    
                                 </div>
                                 
                               @endforeach

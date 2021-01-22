@@ -21,6 +21,8 @@ class CreateFieldsTable extends Migration
             $table->boolean('complete')->nullable();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('adminField_id')->references('id')->on('admin_fields')->onDelete('cascade');
+            
         });
     }
 

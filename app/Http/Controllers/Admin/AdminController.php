@@ -11,6 +11,7 @@ use App\Instruction;
 use App\Plant;
 use App\PlantType;
 use App\Daily;
+use App\AdminField;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -43,6 +44,25 @@ class AdminController extends Controller
         $user->agricultualHistories()->create(['contet'=>$request->content]);
         
         $user_instruction=User_instruction::findOrFail($request->user_instruction_id);
+        if($user_instruction->instruction_id==1){
+            //発送されると、adminFieldに畑が戻され
+            $AdminField=AdminField::findOrFail($user_instruction->field()->first()->adminField_id);
+            $AdminField->used=true;
+            $AdminField->save();
+          
+            //日記を消して写真も削除
+            if($user_instruction->field()->first()->dailies()->get()!=null){
+            $User_dailys=$user_instruction->field()->first()->dailies()->get();
+            foreach($User_dailys as $daily){
+               $deletepath=$daily->gallary;
+               Storage::disk('s3')->delete($deletepath);
+               $daily->delete();
+            }
+             //userから畑を返してもらう
+            $field=$user_instruction->field()->first();
+            $field->delete();
+           }
+        }
         $user_instruction->complete=true;
         $user_instruction->save();
         return redirect(route('admin.home'));

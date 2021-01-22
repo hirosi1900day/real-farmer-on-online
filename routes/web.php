@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/{id}/show','User\DailyController@show')->name('user.daily.show');
    
    //決済関連
-   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index')->middleware('verified');
+   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
    Route::post('/user/pay/payment','User\PayController@payment1000')->name('user.pay.payment1000');
    Route::post('/user/pay/payment3000','User\PayController@payment3000')->name('user.pay.payment3000');
    Route::post('/user/pay/payment5000','User\PayController@payment5000')->name('user.pay.payment5000');

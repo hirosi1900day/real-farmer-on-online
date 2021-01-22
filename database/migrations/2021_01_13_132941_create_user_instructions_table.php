@@ -21,6 +21,7 @@ class CreateUserInstructionsTable extends Migration
             $table->boolean('complete')->nullable();
             
             $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
+            $table->foreign('instruction_id')->references('id')->on('instructions')->onDelete('cascade');
         });
     }
 
