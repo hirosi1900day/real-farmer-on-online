@@ -17,10 +17,7 @@
                     {!! Form::label('name', 'name:') !!}
                     {!! Form::text('name', old($user->name), ['class' => 'form-control']) !!}
                 </div>
-                <div class='form-group'>
-                    {!! Form::label('image_location','プロフィール画像を登録する') !!}
-                    {!! Form::file('image_location') !!}
-                </div>
+                
                 <div class="form-group">
                     {!! Form::label('self_introduce', '自己紹介:') !!}
                     {!! Form::textarea('self_introduce', old('self_introduce'), ['class' => 'form-control']) !!}

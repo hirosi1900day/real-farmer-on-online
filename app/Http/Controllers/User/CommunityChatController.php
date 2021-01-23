@@ -30,10 +30,15 @@ class CommunityChatController extends Controller
         //user_idでメッセージ送信者を特定する
         
         //これらはinput hiddenで送信する
-       $message = chatmessage::create([
+        chatmessage::create([
           'user_id'=>$request->user_id,
           'messages'=>$request->messages,
            ]);
+        if(count($message=Chatmessage::orderBy('created_at')->get())>100){
+            $message=Chatmessage::orderBy('created_at')->first();
+            $message->delete();
+        }
+        
           return ;
     }
     

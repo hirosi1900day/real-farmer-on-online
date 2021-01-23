@@ -7,14 +7,20 @@
           {{ csrf_field() }}
           <p>指示を追加する畑（複数回答不可）: 
             　@foreach($fields as $index=>$field)
-                  <input type="radio" name="field" value="{{$field->id}}">{{$adminFields[$index]->field_name}}
+                <div class="index-container shadow">
+                    <input type="radio" id="anId4" class="wskCheckbox" name="field" value="{{$field->id}}">
+                    <label class="wskLabel" for="anId4">{{$adminFields[$index]->field_name}}</label>
+                </div>
               @endforeach
           <p>たねを追加す（複数回答可）: 
               @foreach($plants as $index=>$plant)
-                  <input type="checkbox" name="plant[]" value="{{$plant->id}}">{{$plant->name}}
+                <div class="index-container shadow">
+                    <input type="checkbox" id="anId1" class="wskCheckbox" name="plant[]" value="{{$plant->id}}">
+                    <label class="wskLabel" for="anId1">{{$plant->name}}</label>
+                </div>
               @endforeach
           </p>
-          <p><input type="submit" value="送信"></p>
+          <div class="skyblue panel"><button class="skyblue menu-button shadow" type="submit" value="送信">送信</button></div>
      </form>
   </div>
 @endsection

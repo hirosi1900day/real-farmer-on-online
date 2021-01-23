@@ -14,6 +14,9 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('welcome');
 });
+//仮登録
+// Route::get('pre_signup', 'Auth\RegisterController@pre_showRegistrationForm')->name('pre_signup.get');
+// Route::get('pre_signup', 'Auth\RegisterController@pre_register')->name('pre_signup.post');
 //会員登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
@@ -76,12 +79,12 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/{id}/show','User\DailyController@show')->name('user.daily.show');
    
    //決済関連
-   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
+   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index')->middleware('verified');
    Route::post('/user/pay/payment','User\PayController@payment1000')->name('user.pay.payment1000');
    Route::post('/user/pay/payment3000','User\PayController@payment3000')->name('user.pay.payment3000');
    Route::post('/user/pay/payment5000','User\PayController@payment5000')->name('user.pay.payment5000');
    Route::get('/user/pay/complete','User\PayController@complete')->name('user.pay.complete');
-   //チャット関連
+   //チャット関連；
    Route::get('chat/{id}/show', 'User\ChatController@show')->name('chat.show');
    Route::get('chat/{id}/view', 'User\ChatController@view')->name('chat.view');
    Route::post('chat/{id}/store', 'User\ChatController@store')->name('chat.store');

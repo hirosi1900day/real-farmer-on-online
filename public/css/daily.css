@@ -1,0 +1,26 @@
+.container-center{
+  
+}
+.daily-content{
+    padding: 10px;
+}
+.lines {
+  text-align: center;
+  margin-top: 10px;
+  height: calc(100% - 40px);
+  width: 90%;
+  background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+}
+.odd {
+  background-color: brown;/* 奇数ページを青色に */
+}
+.even {
+  background-color: brown;/* 偶数ページを緑色に */
+}
+
+#flipbook {
+  
+  width: 90%; /* flipbook自体の横幅なので各ページは200px */
+  height: 400px;
+   /* 一番左端だとたまに見切れるので適当に移動 */
+}

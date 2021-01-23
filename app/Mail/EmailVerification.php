@@ -18,7 +18,7 @@ class EmailVerification extends Mailable
      */
     public function __construct($user)
     {
-         $this->user = $user;
+        //  $this->user = $user;
     }
 
     /**
@@ -28,8 +28,8 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this
-            ->subject('クリックしてログインを完了してください')
-            ->view('auth.email.verification');
+        // return $this
+        //     ->subject('クリックしてログインを完了してください')
+        //     ->view('auth.email.verification');
     }
 }

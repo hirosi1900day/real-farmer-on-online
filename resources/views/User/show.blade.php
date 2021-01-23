@@ -13,15 +13,17 @@
                 </a>
             @endif
             <ul class="tabs-menu">
-                <li class="text" v-bind:class="{active: activeTab === 'tabs-1'}" v-on:click="activeTab = 'tabs-1'">
-                    メニュー
+                @if($user->id==Auth::id())
+               　     <li class="text" v-bind:class="{active: activeTab === 'tabs-1'}" v-on:click="activeTab = 'tabs-1'">
+                        メニュー
+                    </li>
+                @endif
+            　　<li class="text" v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'">
+                    自己紹介
                 </li>
                 @if($user->id==Auth::id())
-                    <li class="text" v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'">
-                       自己紹介
-                   </li>
                    <li class="text" v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
-                       畑
+                      畑
                    </li>
                 @endif
             </ul>

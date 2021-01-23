@@ -1,0 +1,50 @@
+#section_top{
+    width: 100%;
+    margin:0;
+    padding:0;
+}
+.swiper-container {
+    width: 95%;
+    height:12vw;
+}
+.swiper-slide {
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    background-color: #9e9e9e;
+}
+.slide-contents-title {
+    font-size: 4vw;
+    font-weight: bold;
+}
+.slide-contents-text {
+    font-size: 2vw;
+}
+.slide01 {
+    background: url(/img/welcom-main-photo/top1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.slide02 {
+    background: url(/img/welcom-main-photo/top3.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.swiper-button {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.swiper .swiper-button-prev {
+    background: url(/img/image-test/arrow-left.svg) no-repeat;
+}
+.swiper .swiper-button-next {
+    background: url(/img/image-test/arrow-right.svg) no-repeat;
+}
+.swiper .swiper-pagination-bullet-active {
+    background: #fff;
+}

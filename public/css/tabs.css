@@ -1,9 +1,8 @@
-
 /* ulのデフォルトスタイルを消去 */
 .tabs-menu {
     margin: 0;
     list-style-type: none;
-    border-bottom:1px solid;
+    /*border-bottom:1px solid;*/
 }
 
 /* タブの基本スタイル */

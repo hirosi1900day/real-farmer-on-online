@@ -67,15 +67,19 @@ class ChatController extends Controller
        $request->validate([
             'message' => 'required|max:255',
         ]);
+        
         //user_idでメッセージ送信者を特定する
-       
         //これらはinput hiddenで送信する
-        $message = AdminChatroom::findOrFail($id)->message()->create([
+           AdminChatroom::findOrFail($id)->message()->create([
           'user_id'=>$request->user_id,
           'admin_user_id'=>$request->admin_user_id,
           'Adminchatroom_id'=>$id,
           'messages'=>$request->message,
            ]);
+           if(count(AdminChatroom::findOrFail($id)->message()->get())>50){
+               $message=AdminChatroom::findOrFail($id)->message()->orderBy('created_at')->first();
+               $message->delete();
+           }
           return ;
     }
     public function admin_index(){
