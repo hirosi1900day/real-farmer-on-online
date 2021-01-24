@@ -16,16 +16,19 @@ class DailyController extends Controller
         $user=\Auth::user();
         $fields=$user->fields()->orderBy('created_at','desc')->get();
         $adminFields=[];
+        $dailys=[];
         foreach($fields as $index=>$field){
             $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
         }
         $dailys=Daily::orderBy('created_at')->get();
         return view('menu.dailiesIndex',['fields'=>$fields,
                                          'adminFields'=>$adminFields,
-                                         'dailys'=>$dailys]);
+                                         ]);
     }
     public function show($id){
-        $daily=Daily::findOrFail($id);
-        return view('menu.dailyShow',['daily'=>$daily]);
+        //idはfield_id
+        $field=Field::findOrFail($id);
+        $dailys=$field->dailies()->get();
+        return view('menu.dailyShow',['dailys'=>$dailys]);
     }
 }

@@ -45,7 +45,7 @@
   <section></section>
   <section></section>
   <section></section>
-    @include('loading')
+  
     
 @endsection
 @section('low')

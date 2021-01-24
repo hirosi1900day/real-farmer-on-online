@@ -14,9 +14,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('welcome');
 });
-//仮登録
-// Route::get('pre_signup', 'Auth\RegisterController@pre_showRegistrationForm')->name('pre_signup.get');
-// Route::get('pre_signup', 'Auth\RegisterController@pre_register')->name('pre_signup.post');
+
 //会員登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
@@ -39,6 +37,14 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::post('/admin/adminField/post', 'Admin\InstructionController@adminField_create')->name('admin.adminField.post');
     Route::post('/admin/plantType/post', 'Admin\InstructionController@plantType_create')->name('admin.plamtType.post');
     Route::post('/admin/instructons/post', 'Admin\InstructionController@instructons_create')->name('admin.instructons.post');
+    //畑全体像
+    Route::get('/admin/overallField/create', 'Admin\InstructionController@field_overall_create')->name('admin.overallField.create');
+    Route::post('/admin/overallField/store', 'Admin\InstructionController@field_overall_store')->name('admin.overallField.store');
+    Route::post('/admin/overallField/delete', 'Admin\InstructionController@field_overall_delete')->name('admin.overallField.delete');
+    //指示関連削除
+    Route::post('/admin/adminField/delete', 'Admin\InstructionController@adminField_delete')->name('admin.adminField.delete');
+    Route::post('/admin/instruction/delete', 'Admin\InstructionController@instruction_delete')->name('admin.instruction.delete');
+    Route::post('/admin/plantType/delete', 'Admin\InstructionController@plantType_delete')->name('admin.plantType.delete');
     //農作履歴書き込み
     Route::get('/admin/fieldHistoryWrite/{id}/create','Admin\AdminController@fieldHistoryWrite')->name('admin.fieldHistoryWrite');
     Route::post('/admin/fieldHistoryWrite/store','Admin\AdminController@fieldHistoryWriteStore')->name('admin.fieldhistoryWrite.create');
@@ -55,6 +61,10 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('user_request/index', 'User\RequestController@index')->name('user_request.index');
     Route::get('user_request/{id}/show', 'User\RequestController@show')->name('user_request.show');
     Route::post('user_request/{id}/delete', 'User\RequestController@delete')->name('user_request.delete');
+    //point返還
+    Route::get('admin/{id}/return_point_view', 'Admin\PointController@return_point_view')->name('admin.return_point_view');
+    Route::post('admin/return_point_store', 'Admin\PointController@return_point_store')->name('admin.return_point_store');
+    
 });
 Route::group(['middleware' => ['auth']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
@@ -68,16 +78,17 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/{user}/edit','User\UserController@edit')->name('user.edit');
    Route::put('user/{id}/update','User\UserController@update')->name('user.update');
    Route::get('/user/myfield','User\MenuController@myfield')->name('user.myfield');
+   //メニュー追加
    Route::get('/user/instruction','User\MenuController@intruction')->name('user.instruction');
    Route::get('/user/field','User\MenuController@field')->name('user.field');
    Route::get('/user/plant','User\MenuController@plant')->name('user.plant');
    Route::post('/user/menu/instruction','User\MenuController@instructionAdd')->name('user.menu.instruction');
    Route::post('/user/menu/field','User\MenuController@fieldAdd')->name('user.menu.field');
    Route::post('/user/menu/plant','User\MenuController@plantAdd')->name('user.menu.plant');
+   Route::get('/user/field_overall','User\MenuController@field_overall')->name('user.field_overall');
    //user日記関連
    Route::get('/user/dailyIndex','User\DailyController@index')->name('user.daily.index');
    Route::get('/user/{id}/show','User\DailyController@show')->name('user.daily.show');
-   
    //決済関連
    Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index')->middleware('verified');
    Route::post('/user/pay/payment','User\PayController@payment1000')->name('user.pay.payment1000');

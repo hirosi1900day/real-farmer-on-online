@@ -18,6 +18,12 @@
         @foreach($instructions as $instruction)
             <div>{{$instruction->name}}</div>
             <div>{{$instruction->point}}</div>
+            <form method="post" action="{{route('admin.instruction.delete')}}">
+                @csrf
+                <input type="hidden" name="instruction_id" value={{$instruction->id}}>
+                <input type="submit" class="btn btn-danger" value="削除" />
+            </form>
+
         @endforeach
     @else
     <h>ありません</h>

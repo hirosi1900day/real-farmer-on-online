@@ -23,7 +23,7 @@
                 </li>
                 @if($user->id==Auth::id())
                    <li class="text" v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
-                      畑
+                     　畑
                    </li>
                 @endif
             </ul>
@@ -55,6 +55,9 @@
                         {!! nl2br(e($user->self_introduce)) !!}
                     </p>
                 </section>
+                <section v-show="activeTab === 'tabs-2'" class="padding">
+                    
+                </section>    
             </section>
         </div>
     </div>

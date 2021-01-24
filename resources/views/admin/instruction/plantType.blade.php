@@ -19,6 +19,11 @@
         @foreach($plantTypes as $plantType)
             <div>{{$plantType->name}}</div>
             <div>{{$plantType->point}}</div>
+            <form method="post" action="{{route('admin.plantType.delete')}}">
+                @csrf
+                <input type="hidden" name="plantType_id" value={{$plantType->id}}>
+                <input type="submit" class="btn btn-danger" value="削除" />
+            </form>
         @endforeach
     @else
     <h>ありません</h>

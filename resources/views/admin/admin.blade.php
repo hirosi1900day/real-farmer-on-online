@@ -36,6 +36,9 @@
                                         <div>{{$user->name}}</div>
                                         <div>{{$user->email}}</div>
                                     </a>
+                                    <a href="{{route('admin.return_point_view',['id'=>$user->id])}}">
+                                        <button class="button">ポイントを返還する</button>
+                                    </a>
                                 </div>
                                 
                               @endforeach
@@ -45,11 +48,12 @@
                      </div> 
                 </section>
                 <section v-show="activeTab === 'tabs-2'" class="background-gray-non-border">
-                    <div class="index-container shadow">{!! link_to_route('admin.adminField', 'field') !!}</div>
-                    <div class="index-container shadow">{!! link_to_route('admin.plantType', 'plantType') !!}</div>
-                    <div class="index-container shadow">{!! link_to_route('admin.instructons', 'instructons') !!}</div>
+                    <div class="index-container shadow">{!! link_to_route('admin.adminField', '畑を追加') !!}</div>
+                    <div class="index-container shadow">{!! link_to_route('admin.plantType', '植物を追加') !!}</div>
+                    <div class="index-container shadow">{!! link_to_route('admin.instructons', '指示を追加') !!}</div>
                     <div class="index-container shadow">{!! link_to_route('chat.user_index', 'チャットユーザー一覧') !!}</div>
                     <div class="index-container shadow">{!! link_to_route('user_request.index', '要望一覧') !!}</div>
+                    <div class="index-container shadow">{!! link_to_route('admin.overallField.create', '畑全体写真を追加する') !!}</div>
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
                     @if (count($fields) > 0)

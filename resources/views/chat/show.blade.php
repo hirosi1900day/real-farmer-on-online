@@ -11,16 +11,13 @@
     
                     </div>
                     <span v-text="m.messages" class="chat_text shadow"></span>
-              
             </li>
         </section>
         <section v-else>
             <li class="left-side">
                     <div class="img-and-name">
                         <span v-text="messages.users[index].name"></span>
-                        
                     </div>
-                
                 <span v-text="m.messages" class="chat_text shadow"></span>
             </li>
         </section>

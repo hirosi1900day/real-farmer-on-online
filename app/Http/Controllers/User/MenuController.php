@@ -9,6 +9,7 @@ use App\Instruction;
 use App\AdminField;
 use App\Plant;
 use App\Field;
+use App\OverallField;
 
 
 class MenuController extends Controller
@@ -81,6 +82,9 @@ class MenuController extends Controller
     
     }
     public function fieldAdd(Request $request){
+        $request->validate([
+            'field'=>['required'],
+        ]);
         $user=\Auth::user();
         if(\Auth::check()){
            foreach($request->field as $number){
@@ -124,6 +128,10 @@ class MenuController extends Controller
         }
         $error=['申し訳ありません、本人のみアクセス可能です、ログインをやり直してください'];
         return view('commons.error',['error'=>$error]);
+    }
+     public function field_overall(){
+        $overallFields=OverallField::get();
+        return view('menu.field_overall',[ 'overallFields'=> $overallFields]);
     }
    
     

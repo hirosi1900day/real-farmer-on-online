@@ -17,8 +17,8 @@ class CommunityChatController extends Controller
         $messages=chatmessage::orderBy('created_at','desc')->get();
         $user=[];
        
-        foreach($messages as $message){
-            $user=User::findOrFail($message->user_id);
+        foreach($messages as $index=>$message){
+            $user[$index]=User::findOrFail($message->user_id);
         }
         return ['messages'=>$messages,'users'=>$user];
     }

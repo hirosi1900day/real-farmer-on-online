@@ -32,12 +32,18 @@
              <li class="nav-item">
                 <a class="nav-link" href="{{route('signup.get')}}">会員登録</a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('login')}}">ログイン</a>
             </li>
-            
             @endif
-          </ul>
+            
+            @if(\Auth::check())
+            <div class="navbar-information">
+                <div class="navbar-user-name">名前：{{\Auth::user()->name}}</div>
+                <div class="navbar-user-point">保有ポイント数：{{\Auth::user()->point}}</div>
+            </div>
+            @endif
+           </ul>
         </div>
         <!--/.nav-collapse -->
       </div>

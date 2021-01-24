@@ -8,15 +8,15 @@
           <p>指示を追加する畑（複数回答不可）: 
             　@foreach($fields as $index=>$field)
                 <div class="index-container shadow">
-                    <input type="radio" id="anId4" class="wskCheckbox" name="field" value="{{$field->id}}">
-                    <label class="wskLabel" for="anId4">{{$adminFields[$index]->field_name}}</label>
+                    <input type="radio" id="anId4{{$index}}" name="field" value="{{$field->id}}">
+                    <label class="wskLabel" for="anId4{{$index}}">{{$adminFields[$index]->field_name}}</label>
                 </div>
               @endforeach
           <p>たねを追加す（複数回答可）: 
               @foreach($plants as $index=>$plant)
                 <div class="index-container shadow">
-                    <input type="checkbox" id="anId1" class="wskCheckbox" name="plant[]" value="{{$plant->id}}">
-                    <label class="wskLabel" for="anId1">{{$plant->name}}</label>
+                    <input type="checkbox" id="anId1{{$index}}"name="plant[]" value="{{$plant->id}}">
+                    <label class="wskLabel" for="anId1{{$index}}">植物名：{{$plant->name}}　ポイント：{{$plant->point}}</label>
                 </div>
               @endforeach
           </p>

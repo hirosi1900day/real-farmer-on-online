@@ -86,7 +86,7 @@ class AdminController extends Controller
     }
     public function dailystore(Request $request){
         $request->validate([
-        'content'=>['required'],
+        'content'=>['required','max:255'],
         'gallary'=>['file','mimes:jpeg,png,jpg,bmb','max:1048','required',],
        ]);
        

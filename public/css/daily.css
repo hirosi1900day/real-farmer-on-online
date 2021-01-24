@@ -6,21 +6,74 @@
 }
 .lines {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 14px;
   height: calc(100% - 40px);
   width: 90%;
   background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+  box-shadow: 0 8px 0 0 #afada3,-2px 0 0 0 #249690;
+  word-break: break-all;
+  
 }
-.odd {
-  background-color: brown;/* 奇数ページを青色に */
+
+.book-table{
+  padding-top: 50px;
+  text-align: center;
+  font-size:20px;
+  font-weight: bold;
 }
-.even {
-  background-color: brown;/* 偶数ページを緑色に */
+.daily-index-image{
+    padding: 20px;
+    width:90%;
+    object-fit: cover;
+    max-height: 300px;
+}
+.daily-main-image{
+    padding: 20px;
+    width:95%;
+    object-fit: cover;
+    max-height:300px;
+    text-align: center;
+    
+
+}
+.daily-title{
+  text-align: center;
+  color: white;
+  font-size:7px;
+}
+
+#flipbook .odd {
+  background-color: brown;
+  box-shadow: -2px 0 0 0 #124f4b,-1px 4px 1px 1px rgba(0,0,0,.2),20px 0 20px 0 rgba(0,0,0,0);
+  
+  
+}
+#flipbook .even {
+  background-color: brown;
+  box-shadow: -2px 0 0 0 #124f4b,-1px 4px 1px 1px rgba(0,0,0,.2),20px 0 20px 0 rgba(0,0,0,0);
+ 
 }
 
 #flipbook {
-  
-  width: 90%; /* flipbook自体の横幅なので各ページは200px */
+  margin-left: 15px;
+  width: 300px;
   height: 400px;
+  box-shadow:6px 0px 0px 0px rgba(0,0,0,.2);
    /* 一番左端だとたまに見切れるので適当に移動 */
+}
+@media (min-width: 500px) {
+  #flipbook {width: 450px;}
+  .daily-title{font-size:10px;}
+}
+@media (min-width: 600px) {
+  #flipbook {width: 550px;}
+  .daily-title{font-size:12px;}
+}
+@media (min-width: 700px) {
+  #flipbook {width: 650px;}
+  .daily-title{font-size:14px;}
+}
+@media (min-width: 700px) {
+  #flipbook {width: 750px;}
+  .daily-title{font-size:18px;}
 }

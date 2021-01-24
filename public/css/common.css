@@ -23,6 +23,16 @@ body{
 .nav-link:hover{
   opacity: 0.5;
 }
+.navbar-user-name{
+  color:white;
+}
+.navbar-user-point{
+  color:white;
+}
+.navbar-information{
+   position:absolute;
+   right:12px;
+}
 .bg-color{
   background-color:#13b1c0;
 }
@@ -147,6 +157,12 @@ body{
 .index-image{
     width:90%;
     object-fit: cover;
+    max-height: 85px;
+    /*border-radius: 5px;*/
+}
+.index-image-menu{
+    width:50%;
+    object-fit: contain;
     max-height: 85px;
     /*border-radius: 5px;*/
 }

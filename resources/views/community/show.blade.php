@@ -69,6 +69,7 @@
           messages:this.text,
           user_id:this.userId,
         };
+        console.log(obj);
        console.log(`/community/store`);
         axios
           .post(`/community/store`,obj)

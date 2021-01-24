@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminFieldsTable extends Migration
+class CreateOverallFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateAdminFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_fields', function (Blueprint $table) {
+        Schema::create('overall_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('field_number');
-            $table->string('field_name');
-            $table->string('gallary')->nullable();
-            $table->boolean('used')->nullable();
+            $table->string('gallary');
         });
     }
 
@@ -30,6 +27,6 @@ class CreateAdminFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_fields');
+        Schema::dropIfExists('overall_fields');
     }
 }
