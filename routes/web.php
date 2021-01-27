@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //request要望
     Route::get('user_request/index', 'User\RequestController@index')->name('user_request.index');
     Route::get('user_request/{id}/show', 'User\RequestController@show')->name('user_request.show');
-    Route::post('user_request/{id}/delete', 'User\RequestController@delete')->name('user_request.delete');
+    Route::get('user_request/{id}/delete', 'User\RequestController@delete')->name('user_request.delete');
     //point返還
     Route::get('admin/{id}/return_point_view', 'Admin\PointController@return_point_view')->name('admin.return_point_view');
     Route::post('admin/return_point_store', 'Admin\PointController@return_point_store')->name('admin.return_point_store');

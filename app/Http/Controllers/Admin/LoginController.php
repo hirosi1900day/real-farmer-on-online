@@ -12,6 +12,9 @@ use App\User_instruction;
 use App\Instruction;
 use App\Plant;
 use App\PlantType;
+use App\AgricultualHistory;
+use App\User_Request;
+
 
 class LoginController extends Controller
 {
@@ -37,29 +40,43 @@ class LoginController extends Controller
     public function home(){
         $fields=Field::where('complete',false)->get();
             $adminFields=[];
+            if(count($fields)>0){
             foreach($fields as $index=>$field){
                 $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
+            }
             }
         $user_instructions=User_instruction::where('complete',false)->get();
             $instructions=[];
             $adminFields_For_instruction=[];
+            if(count($user_instructions)>0){
             foreach($user_instructions as $index=>$user_instruction){
                 $instructions[$index]=Instruction::findOrFail($user_instruction->instruction_id);
                 $adminFields_For_instruction[$index]=AdminField::findOrFail($user_instruction->field()->first()->adminField_id);
             }
+            }
         $plants=Plant::where('complete',false)->get();
             $plantType=[];
             $adminField_For_plant=[];
+            if(count($plants)>0){
             foreach($plants as $index=>$plant){
                 $plantType[$index]=PlantType::findOrFail($plant->plantType_id);
                 $adminField_For_plant[$index]=AdminField::findOrFail($plant->field()->first()->adminField_id);
             }
+            }
         $used_fields=Field::get();
         $used_adminFields=[];
+        if(count($used_fields)>0){
             foreach($used_fields as $index=>$used_field){
                 $used_adminFields[$index]=AdminField::findOrFail($used_field->adminField_id);
             }
-            $users=User::orderBy('created_at','desc')->get();
+        }
+           
+        $AgricultualHistories=AgricultualHistory::get();
+      
+   
+        $users=User::orderBy('created_at','desc')->get();
+        $user_requests=User_Request::orderBy('created_at')->get();
+        
         
         return view('admin.admin',['users'=>$users,
                                    'fields'=>$fields,
@@ -71,7 +88,9 @@ class LoginController extends Controller
                                    'used_fields'=>$used_fields,
                                    'used_adminFields'=>$used_adminFields,
                                    'adminFields_For_instruction'=>$adminFields_For_instruction,
-                                   'adminField_For_plant'=>$adminField_For_plant
+                                   'adminField_For_plant'=>$adminField_For_plant,
+                                   'AgricultualHistories'=> $AgricultualHistories,
+                                   'user_requests'=>$user_requests,
                                    ]);
     }
     function logout(Request $request){

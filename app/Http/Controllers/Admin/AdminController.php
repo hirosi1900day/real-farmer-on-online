@@ -18,7 +18,14 @@ class AdminController extends Controller
 {
     public function userShow($id){
         $user=User::findOrFail($id);
-        return view('admin.userShow',['user'=>$user]);
+        $fields=$user->fields()->get();
+        $adminFields=[];
+        if(count($fields)>0){
+            foreach($fields as $index=>$field){
+                $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
+            }
+        }
+        return view('admin.userShow',['user'=>$user,'fields'=>$fields,'adminFields'=>$adminFields]);
     }
     public function fieldHistoryWrite($id){
         $field=Field::findOrFail($id);
@@ -53,10 +60,12 @@ class AdminController extends Controller
             //日記を消して写真も削除
             if($user_instruction->field()->first()->dailies()->get()!=null){
             $User_dailys=$user_instruction->field()->first()->dailies()->get();
+            if(count($User_dailys)>0){
             foreach($User_dailys as $daily){
                $deletepath=$daily->gallary;
                Storage::disk('s3')->delete($deletepath);
                $daily->delete();
+            }
             }
              //userから畑を返してもらう
             $field=$user_instruction->field()->first();

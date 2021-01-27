@@ -25,6 +25,12 @@
                 <li v-bind:class="{active: activeTab === 'tabs-6'}" v-on:click="activeTab = 'tabs-6'">
                    日記を書く
                 </li>
+                <li v-bind:class="{active: activeTab === 'tabs-7'}" v-on:click="activeTab = 'tabs-7'">
+                    ユーザー作業履歴
+                </li>
+                <li v-bind:class="{active: activeTab === 'tabs-8'}" v-on:click="activeTab = 'tabs-8'">
+                    要望一覧
+                </li>
             </ul>
             <section class="tabs-content">
                 <section v-show="activeTab === 'tabs-1'" class="padding">
@@ -35,6 +41,7 @@
                                     <a href="{{route('admin.user.show',['id'=>$user->id])}}">
                                         <div>{{$user->name}}</div>
                                         <div>{{$user->email}}</div>
+                                        <div>ポイント数：{{$user->point}}</div>
                                     </a>
                                     <a href="{{route('admin.return_point_view',['id'=>$user->id])}}">
                                         <button class="button">ポイントを返還する</button>
@@ -116,12 +123,13 @@
                     @if (count($used_fields) > 0)
                               @foreach($used_fields as $index=>$used_field)
                                 <div class="index-container shadow">
-                                    
+                                   
                                     @if(count($used_field->dailies()->get())>0)
                                         @if(((int)date('d')-
                                         (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('d')+
                                         (int)date('m')-
                                         (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('m'))>=7)
+                                        
                                             <div>日記を更新してください</div>
                                             <div>畑の名前：{{$used_adminFields[$index]->field_name}}</div>
                                             <a href="{{route('admin.user.show',['id'=>$used_field->user()->first()->id])}}">
@@ -150,6 +158,38 @@
                           @else
                               <h>ありません</h>
                           @endif
+                </section>
+                <section v-show="activeTab === 'tabs-7'" class="background-gray-non-border">
+                    @foreach($AgricultualHistories as $index=>$history)
+                        <div class="index-container shadow">
+                           <a href="{{route('admin.user.show',['id'=>$history->user->id])}}">
+                            <div>{{$history->user->name}}</div>
+                            <div>{{$history->user->email}}</div>
+                            <div>{{$history->contet}}</div>
+                           </a>
+                        </div>
+                    @endforeach
+                </section>
+                <section v-show="activeTab === 'tabs-8'" class="background-gray-non-border">
+                @if(count($user_requests)>0)
+                    <h1>要望一覧</h1>
+                    @foreach($user_requests as $index=>$user_request)
+                        <div class="index-container shadow">
+                             <a href="{{route('user_request.show',['id'=>$user_request->id])}}" class="text-decoration-none">
+                                 <div class="list-fontsize">要望タイトル{{$user_request->subject}}</div>
+                             </a>
+                             <a href="{{route('admin.user.show',['id'=>$user_request->user()->first()->id])}}" class="text-decoration-none">
+                                <div class="list-fontsize">ユーザー名{{$user_request->user()->first()->name}}</div>
+                             </a>
+                             <a href="{{route('user_request.delete',['id'=>$user_request->id])}}">
+                                <button class="button">削除</button>
+                             </a>
+                         </div>
+                      
+                   @endforeach
+                @else
+                   <h1>要望がいません</h1>
+                @endif
                 </section>
             </section>
         </div>

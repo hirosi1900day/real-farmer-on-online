@@ -19,7 +19,13 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="/">Top</a>
+              @if(Auth::check())
+              @if(Auth::user()->email==config('const.admin_user')[0])
+                 <a class="nav-link" href="/admin/home">Top</a>
+              @else
+                 <a class="nav-link" href="/user/mypage">Top</a>
+              @endif
+              @endif
             </li>
             @if(Auth::check())
             <li class="nav-item">
@@ -27,6 +33,10 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('logout.get')}}">Logout</a>
+            </li>
+            <li class="navbar-information">
+                    <div class="navbar-user-name">名前：{{\Auth::user()->name}}</div>
+                    <div class="navbar-user-point">保有ポイント数：{{\Auth::user()->point}}</div>
             </li>
             @else
              <li class="nav-item">
@@ -37,12 +47,7 @@
             </li>
             @endif
             
-            @if(\Auth::check())
-            <div class="navbar-information">
-                <div class="navbar-user-name">名前：{{\Auth::user()->name}}</div>
-                <div class="navbar-user-point">保有ポイント数：{{\Auth::user()->point}}</div>
-            </div>
-            @endif
+            
            </ul>
         </div>
         <!--/.nav-collapse -->

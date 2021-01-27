@@ -37,6 +37,6 @@ class RequestController extends Controller
     public function delete($id){
          $user_request=User_request::findOrFail($id);
          $user_request->delete();
-         return redirect(route('user_request.index'));
+         return redirect(route('admin.home'));
     }
 }

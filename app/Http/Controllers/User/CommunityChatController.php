@@ -16,9 +16,10 @@ class CommunityChatController extends Controller
     public function show(){
         $messages=chatmessage::orderBy('created_at','desc')->get();
         $user=[];
-       
+        if(count($messages)>0){
         foreach($messages as $index=>$message){
             $user[$index]=User::findOrFail($message->user_id);
+        }
         }
         return ['messages'=>$messages,'users'=>$user];
     }

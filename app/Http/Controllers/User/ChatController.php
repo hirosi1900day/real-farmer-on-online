@@ -41,8 +41,10 @@ class ChatController extends Controller
         if($messages->isEmpty()){
           $messages=[];
         }
+        if(count($messages)>0){
         foreach($messages as $index=>$message){
          $users[$index]=User::findOrFail($message->user_id);
+        }
         }
         $admin_user=AdminChatroom::findOrFail($Adminchatroom->admin_user_id);
     
@@ -86,6 +88,7 @@ class ChatController extends Controller
         $admin_chat_rooms = AdminChatroom::orderBy('created_at','desc')->get();
         $users=[];
         $notification=[];
+        if(count($admin_chat_rooms)>0){
         foreach($admin_chat_rooms as $index=>$admin_chat_room){
             $users[$index]=User::findOrFail($admin_chat_room->user_id);
             if(count($admin_chat_room->message()->get())>0){
@@ -94,6 +97,7 @@ class ChatController extends Controller
             }else{
                 $notification[$index]=true;
             }
+        }
         }
         return view('chat.user_index',['users'=>$users,'chat_rooms'=>$admin_chat_rooms,'notification'=>$notification]);
     }

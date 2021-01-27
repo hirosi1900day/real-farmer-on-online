@@ -16,12 +16,22 @@ class MenuController extends Controller
 {
     public function myfield(){
         if(\Auth::check()){
-            $fields=Field::get();
-            $instructions=Instruction::get();
-            $plants=PlantType::orderBy('created_at','desc')->get();
+            $fields=\Auth::user()->fields()->get();
+            $instructoin=[];
+            $plants=[];
+            $adminField=[];
+            if(count($fields)>0){
+            foreach($fields as $index=>$field){
+               
+                $adminField[$index]=AdminField::findOrFail($field->adminField_id);
+            }
             return view('menu.myfield',['fields'=>$fields,
-                                        'instructions'=>$instructions,
-                                        'plants'=>$plants]);
+                                        'adminField'=>$adminField]);
+            }else{
+                $error=['畑がありません、畑を追加してください'];
+                return view('commons.error',['error'=>$error]);
+            }
+            
         }
     }
     public function intruction(){
@@ -112,6 +122,10 @@ class MenuController extends Controller
         ]);
         $user=\Auth::user();
         if(\Auth::check()){
+           if((count( Field::findOrFail($request->field)->plants()->get())+count($request->plant))>2){
+               $error=['申し訳ありません,一つの畑に対して２つの植物しか選択できません'];
+               return view('commons.error',['error'=>$error]);
+           }
            foreach($request->plant as $number){
                $plantType=PlantType::findOrFail($number);
                if((($user->point)-($plantType->point))>=0){

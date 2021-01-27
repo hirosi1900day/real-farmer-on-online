@@ -21,20 +21,15 @@
             　　<li class="text" v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'">
                     自己紹介
                 </li>
-                @if($user->id==Auth::id())
-                   <li class="text" v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
-                     　畑
-                   </li>
-                @endif
             </ul>
             <section class="tabs-content">
                 <section v-show="activeTab === 'tabs-1'" class="background-gray-non-border">
                     <div class="container-welcome">
-                        @foreach($mypage_informations as $information)
+                        @foreach($mypage_informations as $index=>$information)
                             <div class="index-container shadow margin center">
                                 <a href="{{route($information[0])}}">
                                     <div>
-                                        <div class="center"><img class="index-image shadow"></div>
+                                        <div class="center"><img class="index-image shadow" src="{{ secure_asset(config('const.mypage_image')[$index])}}"></div>
                                         <div class="text">{{$information[1]}}</div>
                                     </div>
                                 </a>
@@ -45,7 +40,7 @@
                 <section v-show="activeTab === 'tabs-2'" class="padding">
                     @if($user->id==Auth::id())
                         <a href="{{route('user.edit',['user'=>$user->id])}}" class="button">
-                            <i class="fas fa-edit fa-2x"></i>
+                           
                             <span>情報を編集</span>
                         </a>
                     @endif
@@ -55,9 +50,6 @@
                         {!! nl2br(e($user->self_introduce)) !!}
                     </p>
                 </section>
-                <section v-show="activeTab === 'tabs-2'" class="padding">
-                    
-                </section>    
             </section>
         </div>
     </div>

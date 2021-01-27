@@ -12,4 +12,7 @@ class Plant extends Model
     {
         return $this->belongsTo(Field::class);
     }
+    public function plantType(){
+        return $this->belongsTo(PlantType::class);
+    }
 }

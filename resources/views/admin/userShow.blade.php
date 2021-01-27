@@ -42,13 +42,26 @@
                 <section v-show="activeTab === 'tabs-1'" class="padding">
                     <div class="index-container shadow">
                         会員ネーム：{{$user->name}}
+                        会員メール：{{$user->email}}
+                        会員保有ポイント：{{$user->point}}
+                        会員ネーム：{{$user->name}}
+                        会員住所：{{$user->address}}
+                        会員郵便番号：{{$user->postal_code}}
+                        会員電話番号：{{$user->telphone_number}}
                     </div>
                 </section>
                 <section v-show="activeTab === 'tabs-2'" class="background-gray-non-border">
                     
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
-                
+                  @if(count($fields)>0)
+                    @foreach($fields as $index=>$field)
+                        <div class="index-container shadow">
+                            <div>{{$adminFields[$index]->field_name}}</div>
+                        </div>
+                    @endforeach
+                  @endif
+                    
                 </section>
                 <section v-show="activeTab === 'tabs-4'" class="background-gray-non-border">
                 　　　　　

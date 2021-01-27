@@ -51,7 +51,11 @@ body{
 }
 .text-title{
   color: #555;
-  font-weight: 600;
+  font-weight: 800;
+}
+.tex-bold{
+  font-weight: bold;
+  
 }
 .background-gray-non-border{
   background-color: #f5f5f5;
@@ -157,7 +161,7 @@ body{
 .index-image{
     width:90%;
     object-fit: cover;
-    max-height: 85px;
+    max-height: 120px;
     /*border-radius: 5px;*/
 }
 .index-image-menu{

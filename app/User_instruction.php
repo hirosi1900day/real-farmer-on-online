@@ -12,5 +12,8 @@ class User_instruction extends Model
     {
         return $this->belongsTo(Field::class);
     }
+    public function instructions(){
+         return $this->belongsTo(Instruction::class);
+    }
     
 }

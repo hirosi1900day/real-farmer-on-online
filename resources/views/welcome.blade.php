@@ -4,6 +4,7 @@
 @section('head')
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+<link rel="stylesheet" href="{{ secure_asset('css/welcome.css') }}">
 @endsection
 @section('content')
   <section>
@@ -41,11 +42,18 @@
       </div> <!-- swiper-container -->
     </section> <!-- swiper -->
   </section>
-  <section></section>
-  <section></section>
-  <section></section>
-  <section></section>
   
+   <div id="app">
+        <div id="nav">
+          <section2 class="section-background-skyblue width-height"></section2>
+          <section3 class="section-background-white width-height"></section3>
+          <section4 class="section-background-skyblue width-height"></section4>
+          <section5 class="section-background-white width-height"></section5>
+          <section6 class="section-background-skyblue width-height"></section6>
+        </div>
+        <router-view/>
+        </div>
+    </div>
     
 @endsection
 @section('low')

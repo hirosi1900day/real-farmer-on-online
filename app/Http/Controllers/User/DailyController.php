@@ -17,8 +17,10 @@ class DailyController extends Controller
         $fields=$user->fields()->orderBy('created_at','desc')->get();
         $adminFields=[];
         $dailys=[];
+        if(count($fields)>0){
         foreach($fields as $index=>$field){
             $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
+        }
         }
         $dailys=Daily::orderBy('created_at')->get();
         return view('menu.dailiesIndex',['fields'=>$fields,
