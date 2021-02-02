@@ -14,6 +14,7 @@ use App\OverallField;
 
 class MenuController extends Controller
 {
+    //自分の畑情報
     public function myfield(){
         if(\Auth::check()){
             $fields=\Auth::user()->fields()->get();
@@ -22,7 +23,6 @@ class MenuController extends Controller
             $adminField=[];
             if(count($fields)>0){
             foreach($fields as $index=>$field){
-               
                 $adminField[$index]=AdminField::findOrFail($field->adminField_id);
             }
             return view('menu.myfield',['fields'=>$fields,
@@ -34,6 +34,7 @@ class MenuController extends Controller
             
         }
     }
+    //畑に対して指示を追加する
     public function intruction(){
         $fields=\Auth::user()->fields()->get();
         $adminFields=[];
@@ -49,6 +50,7 @@ class MenuController extends Controller
         $instructions=Instruction::orderBy('created_at','desc')->get();
         return view('menu.instruction',['instructions'=>$instructions,'fields'=>$fields,'adminFields'=>$adminFields]);
     }
+    //畑に植物を植える
     public function plant(){
         $fields=\Auth::user()->fields()->get();
         $adminFields=[];
@@ -63,10 +65,12 @@ class MenuController extends Controller
         return view('menu.plant',['plants'=>$plants,'fields'=>$fields,'adminFields'=>$adminFields]);
         }
     }
+    //畑を追加する
     public function field(){
         $fields=AdminField::orderBy('created_at','desc')->get();
         return view('menu.field',['fields'=>$fields]);
     }
+    //指示追加処理post
     public function instructionAdd(Request $request){
         $request->validate([
             'instruction'=>['required'],
@@ -91,6 +95,7 @@ class MenuController extends Controller
         return view('commons.error',['error'=>$error]);
     
     }
+    //畑追加処理post
     public function fieldAdd(Request $request){
         $request->validate([
             'field'=>['required'],
@@ -115,6 +120,7 @@ class MenuController extends Controller
         $error=['申し訳ありません、本人のみアクセス可能です、ログインをやり直してください'];
         return view('commons.error',['error'=>$error]);
     }
+    //植物追加処理
     public function plantAdd(Request $request){
         $request->validate([
             'plant'=>['required'],
@@ -143,6 +149,7 @@ class MenuController extends Controller
         $error=['申し訳ありません、本人のみアクセス可能です、ログインをやり直してください'];
         return view('commons.error',['error'=>$error]);
     }
+    //畑全体像の写真
      public function field_overall(){
         $overallFields=OverallField::get();
         return view('menu.field_overall',[ 'overallFields'=> $overallFields]);

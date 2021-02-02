@@ -30,7 +30,6 @@
         <script src="{{ secure_asset('/js/main.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
-        <script src="{{ secure_asset('/js/loading.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script> 
         @yield('low')
     </body>

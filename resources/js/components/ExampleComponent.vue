@@ -1,15 +1,12 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
+    <div class="flex">
+        <div>
+            <router-link to="/templateService">利用規約</router-link>
+            <router-link to="/contact">お問合せ</router-link>
+        </div>
+        <div>
+        　　<router-link to="/plant">植えることが可能な植物</router-link>
+        　　<div>footer</div>
         </div>
     </div>
 </template>

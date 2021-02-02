@@ -6,7 +6,7 @@
 
         <!-- ホームリンク -->
         <a href="/" class="navbar-brand" aria-label="ホーム">
-           <img class="logo center" src="{{ secure_asset('/img/welcom-main-photo/logo_new.png') }}" alt="">
+           <img class="logo center" src="{{ secure_asset('/img/logo.jpg') }}" alt="">
         </a>
 
         <!-- 画面幅が狭い時に表示されるハンバーガーメニュー -->

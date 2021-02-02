@@ -48,8 +48,8 @@
                     {!! Form::label('telphone_number', 'tel') !!}
                     {!! Form::text('telphone_number',old('telphone_number'),['class' => 'form-control']) !!}
                 </div>
-
-                {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
+                <a class="list-fontsize" href="{{route('agree')}}">利用規約</a>
+                {!! Form::submit('利用規約に同意した上で登録を行う', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
         </div>
     </div>

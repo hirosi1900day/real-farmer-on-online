@@ -7,28 +7,28 @@
     <div class="user_show_body">
         <div id="adminMain">
             <ul class="tabs-menu">
-                <li v-bind:class="{active: activeTab === 'tabs-1'}" v-on:click="activeTab = 'tabs-1'">
+                <li v-bind:class="{active: activeTab === 'tabs-1'}" v-on:click="activeTab = 'tabs-1'" class="text">
                     ユーザー一覧
                 </li>
-                <li v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'">
+                <li v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'" class="text">
                    リンク
                 </li>
-                <li v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
+                <li v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'" class="text">
                    追加された畑
                 </li>
-                <li v-bind:class="{active: activeTab === 'tabs-4'}" v-on:click="activeTab = 'tabs-4'">
+                <li v-bind:class="{active: activeTab === 'tabs-4'}" v-on:click="activeTab = 'tabs-4'" class="text">
                    追加された指示
                 </li>
-                <li v-bind:class="{active: activeTab === 'tabs-5'}" v-on:click="activeTab = 'tabs-5'">
+                <li v-bind:class="{active: activeTab === 'tabs-5'}" v-on:click="activeTab = 'tabs-5'" class="text">
                    追加された種
                 </li>
-                <li v-bind:class="{active: activeTab === 'tabs-6'}" v-on:click="activeTab = 'tabs-6'">
+                <li v-bind:class="{active: activeTab === 'tabs-6'}" v-on:click="activeTab = 'tabs-6'" class="text">
                    日記を書く
                 </li>
-                <li v-bind:class="{active: activeTab === 'tabs-7'}" v-on:click="activeTab = 'tabs-7'">
+                <li v-bind:class="{active: activeTab === 'tabs-7'}" v-on:click="activeTab = 'tabs-7'" class="text">
                     ユーザー作業履歴
                 </li>
-                <li v-bind:class="{active: activeTab === 'tabs-8'}" v-on:click="activeTab = 'tabs-8'">
+                <li v-bind:class="{active: activeTab === 'tabs-8'}" v-on:click="activeTab = 'tabs-8'" class="text">
                     要望一覧
                 </li>
             </ul>
@@ -61,6 +61,8 @@
                     <div class="index-container shadow">{!! link_to_route('chat.user_index', 'チャットユーザー一覧') !!}</div>
                     <div class="index-container shadow">{!! link_to_route('user_request.index', '要望一覧') !!}</div>
                     <div class="index-container shadow">{!! link_to_route('admin.overallField.create', '畑全体写真を追加する') !!}</div>
+                    <div class="index-container shadow">{!! link_to_route('admin.create.information', '新着情報を作成する') !!}</div>
+                
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
                     @if (count($fields) > 0)
@@ -125,10 +127,14 @@
                                 <div class="index-container shadow">
                                    
                                     @if(count($used_field->dailies()->get())>0)
+                                        
                                         @if(((int)date('d')-
                                         (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('d')+
-                                        (int)date('m')-
-                                        (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('m'))>=7)
+                                        ((int)date('m')-
+                                        (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('m'))*30)>=6 || ((int)date('d')-
+                                        (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('d')+
+                                        ((int)date('m')-
+                                        (int)$used_field->dailies()->orderBy('created_at','desc')->first()->created_at->format('m'))*30)<0)
                                         
                                             <div>日記を更新してください</div>
                                             <div>畑の名前：{{$used_adminFields[$index]->field_name}}</div>
@@ -180,6 +186,9 @@
                              </a>
                              <a href="{{route('admin.user.show',['id'=>$user_request->user()->first()->id])}}" class="text-decoration-none">
                                 <div class="list-fontsize">ユーザー名{{$user_request->user()->first()->name}}</div>
+                             </a>
+                             <a href="{{route('chat.create_chatroom',['id'=>$user_request->user()->first()->id])}}">
+                                 <button class="button">メッセージを送る</button>
                              </a>
                              <a href="{{route('user_request.delete',['id'=>$user_request->id])}}">
                                 <button class="button">削除</button>

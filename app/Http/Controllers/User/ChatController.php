@@ -14,15 +14,16 @@ use App\Message_time;
 
 class ChatController extends Controller
 {
-    public function create_chatroom(){
-        $user=\Auth::user();
+    public function create_chatroom($id){
+        // $user=\Auth::user();
+        $user=User::findOrFail($id);
         // チャットルームを取得
-        $chat_room_id = AdminChatroom::where('user_id', \Auth::id())
+        $chat_room_id = AdminChatroom::where('user_id', $user->id)
         ->pluck('id');
         //チャットルームがなければ作成する
         if($chat_room_id->isEmpty()){
             $admin_user_id=User::where('email',config('const.admin_user')[0])->pluck('id')->first();
-            AdminChatroom::create(['user_id'=>\Auth::id(),'admin_user_id'=>$admin_user_id,]); //チャットルーム作成
+            AdminChatroom::create(['user_id'=>$user->id,'admin_user_id'=>$admin_user_id,]); //チャットルーム作成
             $latest_chat_room = AdminChatroom::orderBy('created_at', 'desc')->first(); //最新チャットルームを取得
             $chat_room_id = $latest_chat_room->id;
         }

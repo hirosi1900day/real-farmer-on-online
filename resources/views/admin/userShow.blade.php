@@ -51,7 +51,9 @@
                     </div>
                 </section>
                 <section v-show="activeTab === 'tabs-2'" class="background-gray-non-border">
-                    
+                    <a href="{{route('chat.create_chatroom',['id'=>$user->id])}}">
+                        <button class="button">メッセージを送る</button>
+                    </a>
                 </section>
                 <section v-show="activeTab === 'tabs-3'" class="background-gray-non-border">
                   @if(count($fields)>0)

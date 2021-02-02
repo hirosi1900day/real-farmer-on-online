@@ -14,10 +14,10 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('welcome');
 });
-
 //会員登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
+Route::get('agree', 'Auth\RegisterController@agree')->name('agree');
 //ログイン
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
@@ -64,6 +64,10 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //point返還
     Route::get('admin/{id}/return_point_view', 'Admin\PointController@return_point_view')->name('admin.return_point_view');
     Route::post('admin/return_point_store', 'Admin\PointController@return_point_store')->name('admin.return_point_store');
+    //新着情報作成フォーム
+    Route::get('admin/information/create', 'User\InformationController@create')->name('admin.create.information');
+    Route::post('admin/information/store', 'User\InformationController@store')->name('admin.store.information');
+    
     
 });
 Route::group(['middleware' => ['auth']], function () {
@@ -99,7 +103,8 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('chat/{id}/show', 'User\ChatController@show')->name('chat.show');
    Route::get('chat/{id}/view', 'User\ChatController@view')->name('chat.view');
    Route::post('chat/{id}/store', 'User\ChatController@store')->name('chat.store');
-   Route::get('chat/create_chatroom', 'User\ChatController@create_chatroom')->name('chat.create_chatroom');
+   //これでチャットルームがなければ作成、あればチャットルームに移動(view)
+   Route::get('chat/{id}/create_chatroom', 'User\ChatController@create_chatroom')->name('chat.create_chatroom');
    //コミュニティーチャット
    Route::get('community/show', 'User\CommunityChatController@show')->name('community.show');
    Route::get('community/view', 'User\CommunityChatController@view')->name('community.view');
@@ -108,6 +113,8 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('user_request/create', 'User\RequestController@view')->name('user_request.create');
    Route::get('user_request/complete', 'User\RequestController@complete')->name('user_request.complete');
    Route::post('user_request/store', 'User\RequestController@store')->name('user_request.store');
+   //新着情報
+   Route::get('user/information/index', 'User\InformationController@index');
   
    
    

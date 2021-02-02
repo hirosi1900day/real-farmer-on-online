@@ -7,19 +7,14 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 
-import router from './router';
-import section1 from "./component/section1";
-import section2 from "./component/section2";
-import section3 from "./component/section3";
-import section4 from "./component/section4";
-import section5 from "./component/section5";
-import section6 from "./component/section6";
+
+import character from "./components/character";
+
 
 
 window.Vue = require('vue');
-Vue.use(VueRouter);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -32,12 +27,7 @@ Vue.use(VueRouter);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('section', require('./component/section1.vue').default);
-Vue.component('section2', require('./component/section2.vue').default);
-Vue.component('section3', require('./component/section3.vue').default);
-Vue.component('section4', require('./component/section4.vue').default);
-Vue.component('section5', require('./component/section5.vue').default);
-Vue.component('section6', require('./component/section6.vue').default);
+Vue.component('character', require('./components/character.vue').default);
 
 
 
@@ -49,6 +39,5 @@ Vue.component('section6', require('./component/section6.vue').default);
 
 const app = new Vue({
     el: '#app',
-    router, 
-    
+
 });

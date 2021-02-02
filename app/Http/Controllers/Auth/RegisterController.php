@@ -41,6 +41,9 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    public function agree(){
+        return view('auth.agree');
+    }
 
     /**
      * Get a validator for an incoming registration request.

@@ -180,6 +180,7 @@ body{
     width: 100%;
     margin-left: 5px;
     grid-template-columns: repeat(2, 48%);
+    margin-bottom: 150px;
 
 }
 @media (min-width: 700px) {
@@ -189,6 +190,7 @@ body{
     padding:0;
     width: 98%;
     margin-left:5px;
+    margin-bottom: 150px;
     grid-template-columns: repeat(3,31.1%);
 }
 }

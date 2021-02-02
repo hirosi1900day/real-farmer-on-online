@@ -22,7 +22,7 @@ class DailyController extends Controller
             $adminFields[$index]=AdminField::findOrFail($field->adminField_id);
         }
         }
-        $dailys=Daily::orderBy('created_at')->get();
+        
         return view('menu.dailiesIndex',['fields'=>$fields,
                                          'adminFields'=>$adminFields,
                                          ]);
