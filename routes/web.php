@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     
     
 });
-Route::group(['middleware' => ['auth','verified']], function () {
+Route::group(['middleware' => ['auth']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
    //管理者よう
    Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
