@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css" integrity="sha512-K2J6Yt6ElUYEMPcTr0wm555AAyiqkgYiUgPIW18FT88/aYSNDk0EvGjsln/TEu3ee/jaHf0xoXzFppSbBtUXbQ==" crossorigin="anonymous" />
 @endsection
 @section('content')
-</br>
-</br>
-</br>
+
+
+
   <section>
       <section class="swiper width-height">
           <div class="swiper-container">
@@ -18,22 +18,22 @@
                   <div class="swiper-slide slide01">
                       <div class="slide-contents">
                           <div class="slide-contents-title">
-                              あなたの店舗をシェアしよう<br>
+                              農業に挑戦したいあなたをサポート<br>
                           </div>
                           <div class="slide-contents-text">
-                          店舗の空き時間をシェアしよう<br>
-                          店舗稼働率をあげて売り上げを向上させよう<br>
+                          リモートで野菜を育てて、農作のノウハウを身につけよう！<br>
+                          田舎暮らしをしてみたい方にもおすすめです！<br>
                           </div>
                       </div> <!-- slide-contents -->
                   </div> <!-- swiper-slide -->
                   <div class="swiper-slide slide02">
                       <div class="slide-contents">
                           <div class="slide-contents-title">
-                          店舗もサブスクの時代<br>
+                          一緒に野菜を育てる仲間とコミュニケーションをとり、楽しく学ぼう<br>
                           </div>
                           <div class="slide-contents-text">
-                          お気に入りの店舗を見つけてシェアしよう<br>
-                          店舗を共同で経営し、経済の荒波を打ち破ろう！！<br>
+                          コミュニティーチャット機能で野菜を育てる仲間とコミュニケーションを<br>
+                          取ることで、飽きずに楽しく野菜を育てることができます。<br>
                           </div>
                       </div> <!-- slide-contents -->
                   </div> <!-- swiper-slide -->
@@ -136,7 +136,7 @@
   
   <section class="animated">
       <div class="footer width-height">
-          <div class="color-white">お問合せ先</div> 
+          <div class="color-white">お仕事のご依頼、お問合せ先</div> 
           <div class="color-white">sugashi1900day@gmail.com</div>
           <div class="color-white bottom">&copyFARMRE</div>
       </div>
@@ -182,7 +182,7 @@
   },
 
   // 要素が画面中央に来たらhandlerを実行
-  offset: '60%',
+  offset: '80%',
 });
 </script>      
 @endsection

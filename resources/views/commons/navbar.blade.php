@@ -21,18 +21,18 @@
             <li class="nav-item">
               @if(Auth::check())
               @if(Auth::user()->email==config('const.admin_user')[0])
-                 <a class="nav-link" href="/admin/home">Top</a>
+                 <a class="nav-link" href="/admin/home">トップ</a>
               @else
-                 <a class="nav-link" href="/user/mypage">Top</a>
+                 <a class="nav-link" href="/user/mypage">トップ</a>
               @endif
               @endif
             </li>
             @if(Auth::check())
             <li class="nav-item">
-              <a class="nav-link" href="{{route('user.mypage')}}">MyProfile</a>
+              <a class="nav-link" href="{{route('user.mypage')}}">マイページ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('logout.get')}}">Logout</a>
+              <a class="nav-link" href="{{route('logout.get')}}">ログアウト</a>
             </li>
             <li class="navbar-information">
                     <div class="navbar-user-name">名前：{{\Auth::user()->name}}</div>
