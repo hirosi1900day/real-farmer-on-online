@@ -49,7 +49,9 @@
                     {!! Form::text('telphone_number',old('telphone_number'),['class' => 'form-control']) !!}
                 </div>
                 <a class="list-fontsize" href="{{route('agree')}}">利用規約</a>
-                {!! Form::submit('利用規約に同意した上で登録を行う', ['class' => 'btn btn-primary btn-block']) !!}
+                <div class="text">本サービスはメール認証完了後、使用可能となります。</br>
+                下記のボタンを押し、メールを送信してください</div>
+                {!! Form::submit('利用規約に同意した上でメールを送信する', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
         </div>
     </div>
