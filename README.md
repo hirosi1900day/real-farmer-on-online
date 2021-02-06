@@ -1,3 +1,32 @@
+・リポジトリ（Webアプリ）の名前：Name</br>
+    realFarmer</br>
+       オンラインでリアル感覚で農業の体験ができたら、という思いを込めて決めた</br>
+・概要：Overview</br>
+    本サービスは、ネット上で野菜を育てながら農業について学んでいくサービスです。</br>
+    主な機能</br>
+        ・畑の選択</br>
+ 　     ・育てる野菜の選択</br>
+　      ・育った野菜を発送</br>
+　      ・野菜の成長度合いをお知らせする日記機能</br>
+　      ・決済機能</br>
+  　    ・メール認証会員登録機能</br>
+  　    ・チャット機能</br>
+ 　     ・管理画面</br>
+・使用言語：language</br>
+    ・laravel(php):約90%</br>
+    ・vue.js(javascript):約10% (主に非同期処理で使用）</br>
+・使用外部サービス</br>
+    ・aws:S3,SES（日記、畑の写真などにS3を使用、メール認証会員登録にSESを使用）</br>
+    ・stripe（種購入などの決済時に使用、導入の容易さ、サービスの信頼性より選択した）</br>
+  　・heroku(ユーザー訪問数、サービス内の機能上のサーバーへの負荷はそこまで大きくないと判断し、コスト面を考えawsではなくherokuをサーバーとして</br>
+  　選択した）</br>
+・今後の改良点</br>
+  　当初本サービスは、任天堂動物の森のような、ゲームのなかでキャラクターが育てた作物等がリアルとリンクし、</br>
+    ゲームの中での収穫時に実際に家に野菜が届くというゲーム✖️リアルというコンセプトで作成に当たった。</br>
+    しかし実装を進めていく中で、技術面の未熟さをしり断念した。</br>
+    今後、技術を高めていき、この目標に近づけるよう更新を続けていく。</br>
+
+ 　
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
