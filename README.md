@@ -1,11 +1,11 @@
 
 ・リポジトリ（Webアプリ）の名前：Name</br>
-&nbsp;&emsp;realFarmer</br>
-&nbsp;&emsp;&emsp;オンラインでリアル感覚で農業の体験ができたら、という思いを込めて決めた</br>
+&emsp;realFarmer</br>
+&emsp;&emsp;オンラインでリアル感覚で農業の体験ができたら、という思いを込めて決めた</br>
 ・概要：Overview</br>
-&nbsp;&emsp;本サービスは、ネット上で野菜を育てながら農業について学んでいくサービスです。</br>
-&nbsp;&emsp;主な機能</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;・畑の選択</br>
+&emsp;本サービスは、ネット上で野菜を育てながら農業について学んでいくサービスです。</br>
+&emsp;主な機能</br>
+&emsp;&emsp;・畑の選択</br>
 &emsp;&emsp;・育てる野菜の選択</br>
 &emsp;&emsp;・育った野菜を発送</br>
 &emsp;&emsp;・野菜の成長度合いをお知らせする日記機能</br>
