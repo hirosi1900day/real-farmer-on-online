@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('email', 'メールアドレス') !!}
+                    {!! Form::label('email', 'メールアドレス(認証がありますので、正しいメールアドレスを入力してください）') !!}
                     {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
                 </div>
 
