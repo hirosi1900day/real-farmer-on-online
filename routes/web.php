@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     
     
 });
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','verified']], function () {
    Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
    //管理者よう
    Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
@@ -94,7 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/user/dailyIndex','User\DailyController@index')->name('user.daily.index');
    Route::get('/user/{id}/show','User\DailyController@show')->name('user.daily.show');
    //決済関連
-   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index')->middleware('verified');
+   Route::get('/user/pay/index','User\PayController@index')->name('user.pay.index');
    Route::post('/user/pay/payment','User\PayController@payment1000')->name('user.pay.payment1000');
    Route::post('/user/pay/payment3000','User\PayController@payment3000')->name('user.pay.payment3000');
    Route::post('/user/pay/payment5000','User\PayController@payment5000')->name('user.pay.payment5000');
