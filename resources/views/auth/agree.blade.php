@@ -55,8 +55,15 @@
     <h3 class="Inner-Box-Headline">決済について</h3>
     <ol class="Inner-Box-List">
       <li class="Inner-Box-List-Item">決済サービスに関しては、外部サービスであるstripeに一任しています。決済に関するご質問はstripe社にご連絡ください</li>
-      <li class="Inner-Box-List-Item">ユーザーは，本サービスの有料部分の対価として，当社が別途定め，本ウェブサイトに表示する利用料金を，当社が指定する方法により支払うものとします。
-</li>
+      <li class="Inner-Box-List-Item">ユーザーは，本サービスの有料部分の対価として，当社が別途定め，本ウェブサイトに表示する利用料金を，当社が指定する方法により支払うものとします。</li>
+    </ol>
+  </div>
+  <div class="Inner-Box">
+    <h3 class="Inner-Box-Headline">サービスについて</h3>
+    <ol class="Inner-Box-List">
+      <li class="Inner-Box-List-Item">本サービス内で野菜を育てていただきますが、天候や気候の変化により必ず野菜が発送できる状態
+      になるとは限りませんので、ご注意ください</li>
+      <li class="Inner-Box-List-Item">本サービス内で決済処理をされた場合、いかなる場合においても返金処理は行われませんのでご注意ください</li>
     </ol>
   </div>
   <div class="Inner-Box">
