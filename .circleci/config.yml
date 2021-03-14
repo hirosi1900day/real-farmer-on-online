@@ -10,6 +10,7 @@ jobs:
 
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -20,14 +21,5 @@ jobs:
       # - image: redis:2.8.19
 
     steps:
-      - run: echo "Hello World"# PHP CircleCI 2.0 configuration file
-
-      
-      # Download and cache dependencies
-      
-            # "composer.lock" can be used if it is committed to the repo
-           
-            # fallback to using the latest cache if no exact match is found
-        
-
-      
+      - run: echo "Hello World"
+      # PHP CircleCI 2.0 configuration file
