@@ -1,3 +1,31 @@
+
+・リポジトリ（Webアプリ）の名前：Name</br>
+&emsp;realFarmer</br>
+&emsp;&emsp;オンラインでリアル感覚で農業の体験ができたら、という思いを込めて決めた</br>
+・概要：Overview</br>
+&emsp;本サービスは、ネット上で野菜を育てながら農業について学んでいくサービスです。</br>
+&emsp;主な機能</br>
+&emsp;&emsp;・畑の選択</br>
+&emsp;&emsp;・育てる野菜の選択</br>
+&emsp;&emsp;・育った野菜を発送</br>
+&emsp;&emsp;・野菜の成長度合いをお知らせする日記機能</br>
+&emsp;&emsp;・決済機能</br>
+&emsp;&emsp;・メール認証会員登録機能</br>
+&emsp;&emsp;・チャット機能</br>
+&emsp;&emsp;・管理画面</br>
+・使用言語：language</br>
+&emsp;・laravel(php):約90%</br>
+&emsp;・vue.js(javascript):約10% (主に非同期処理で使用）</br>
+・使用外部サービス</br>
+&emsp;・aws:S3,SES（日記、畑の写真などにS3を使用、メール認証会員登録にSESを使用）</br>
+&emsp;・stripe（種購入などの決済時に使用、導入の容易さ、サービスの信頼性より選択した）</br>
+
+・今後の改良点</br>
+&emsp;当初本サービスは、任天堂動物の森のような、ゲームのなかでキャラクターが育てた作物等がリアルとリンクし、</br>
+&emsp;ゲームの中での収穫時に実際に家に野菜が届くというゲーム✖️リアルというコンセプトで作成に当たった。</br>
+&emsp;しかし実装を進めていく中で、技術面の未熟さをしり断念した。</br>
+&emsp;今後、技術を高めていき、この目標に近づけるよう更新を続けていく。</br>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
